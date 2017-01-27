@@ -1,0 +1,17 @@
+BoldAsFont=no
+Font=Consolas
+FontWeight=700
+FontIsBold=yes
+FontHeight=11
+MiddleClickAction=void
+RightClickAction=paste
+CursorType=block
+Scrollbar=none
+Transparency=off
+Term=xterm
+Columns=84
+Rows=28
+Locale=C
+Charset=UTF-8
+FontSmoothing=default
+BellType=-1
