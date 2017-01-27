@@ -5,5 +5,5 @@
 - inputrc
 - minttyrc
 - screenrc
-- tmux.conf
 - gitconfig
+- tmux.conf
