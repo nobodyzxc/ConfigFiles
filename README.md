@@ -1,2 +1,5 @@
-# .tmux.conf
-my tmux configure
+# My configuration files
+
+- vimrc
+- inputrc
+- tmux.conf
