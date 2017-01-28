@@ -91,10 +91,12 @@ alias cof='_(){ (chrome `cygpath -w "$PWD"`\\$1) 2>/dev/null & };_'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$1; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 swpclean() { 
-    for fn in .*.swp
-    do 
-        /bin/rm -i $fn 
-    done
+    if [ -f .*.swp ];then
+        for fn in `/bin/ls .*.swp`
+        do 
+            /bin/rm -i $fn 
+        done
+    fi
 }
 alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
 alias install='~/download/setup-x86_64'
