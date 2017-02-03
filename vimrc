@@ -1,8 +1,62 @@
-"My setting above
+"My leader setting
+let mapleader = "\<Space>"
+"nnoremap <Leader>w :w<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>  :
+imap jk <ESC>
 
+"vundle below
+"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set nocompatible                " be iMproved
+filetype off                    " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" github repos below
+"Bundle 'Valloric/YouCompleteMe' "Wrong , size too large , I don't know why.
+Bundle 'scrooloose/nerdtree'
+
+" vim-scripts repos
+Bundle 'taglist.vim'
+Bundle 'ShowTrailingWhitespace'
+"Plugin 'vim-airline/vim-airline'
+"Bundle 'artur-shaik/vim-javacomplete2'
+"Bundle 'html5.vim'
+"Bundle 'JavaScript-syntax'
+
+" non github repos
+" Bundle 'git://git.wincent.com/command-t.git'
+
+filetype plugin indent on
+
+":BundleInstall
+":BundleUpdate
+":BundleClean
+":BundleList
+":BundleSearch
+"TCL ~$ vim +BundleInstall +qall
+
+
+"ShowTrailingWhitespace , clear all <space>$
+nnoremap <leader>c :%s/\s\+$//<cr>:let @/=''<CR>
+
+" NERDTree config
+ map <F12> :NERDTreeToggle<CR>
+ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+
+ map <F11> :TlistToggle<CR>
+
+" JavaComplete
+"setlocal omnifunc=javacomplete#Complete
+"inoremap <buffer> . .<C-X><C-O><C-P>
+
+"My setting above ^^^
 "sanbi's setting below vvv
-"  VimRC of ShepJeng
-set nocompatible
+
 set secure
 
 set backspace=2         " allow backspacing over everything in insert mode
@@ -24,9 +78,9 @@ set t_Sf=[1;3%p1%dm   " set foreground color
 set t_Sb=[1;4%p1%dm   " set background color
 set showcmd             " show command
 set showmode            " show current mode
-set incsearch           " While typing a search pattern, show immediately 
+set incsearch           " While typing a search pattern, show immediately
                         " where the so far typed pattern matches.
-set hlsearch            " When there is a previous search pattern, 
+set hlsearch            " When there is a previous search pattern,
                         " highlight all its matches.
 syntax on               " show parts of the text in another font or color
 
@@ -55,25 +109,25 @@ endfunction
 highlight Comment    ctermfg=DarkCyan
 highlight SpecialKey ctermfg=Yellow
 
-map <F2> :update<CR>                    " using :update to replace :w
-map <F3> :update<CR>:q<CR>
-map <F4> :q!<CR>
-map <F5> :bp<CR>
-map <F6> :bn<CR>
-" map <F8> :set hls!<BAR>set hls?<CR>     " toggle on/off highlightsearch
-map <F8> :set paste!<BAR>set paste?<CR> " toggle on/off paste mode
-set pastetoggle=<F8>
-map <F9> :!make %:r <CR>
+"map <F2> :update<CR>                    " using :update to replace :w
+"map <F3> :update<CR>:q<CR>
+"map <F4> :q!<CR>
+"map <F5> :bp<CR>
+"map <F6> :bn<CR>
+"
+"map <F8> :set paste!<BAR>set paste?<CR> " toggle on/off paste mode
+"set pastetoggle=<F8>
+"map <F9> :!make %:r <CR>
+"
+"map <F7> :if exists("syntax_on") <BAR>  " press <F7> syntax on/off
+"        \   syntax off <bar><cr>
+"        \ else <BAR>
+"        \   syntax on <BAR>
+"        \ endif <CR>
+"
+"map <F10> <ESC>:read !date<CR>
 
-map <F7> :if exists("syntax_on") <BAR>  " press <F7> syntax on/off
-        \   syntax off <bar><cr>
-        \ else <BAR>
-        \   syntax on <BAR>
-        \ endif <CR>
 
-map <F10> <ESC>:read !date<CR>
-map <F11> <ESC>i//<ESC>
-map <F12> <ESC>i<RIGHT>/**/<LEFT><LEFT>
 "smart mapping for tab completion
 function InsertTabWrapper()
     let col = col('.') - 1
@@ -82,7 +136,7 @@ function InsertTabWrapper()
     else
         return "\<c-p>"
     endif
-endfunction 
+endfunction
 
 inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 
@@ -94,7 +148,7 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 
 let rngbeg=0
 autocmd FileType markdown,text let rngbeg=100
-autocmd FileType c,cc,cpp,java let rngbeg=80
+autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
 
 "set colorcolumn=80
 "^ single col

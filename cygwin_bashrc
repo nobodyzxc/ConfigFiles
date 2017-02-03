@@ -35,12 +35,15 @@ SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 #    `/bin/ls -d /cygdrive/c/Program\ Files/*` \
 #    `/bin/ls -d /cygdrive/c/Program\ Files\ \(x86\)/*`
+echo "EnvPath..."
 for _bin in `/bin/ls -d ~/bin/*_bin`
 do
-    echo "PATH added `printf "%q" $_bin`"
+    printf "\t%q\n" ${_bin##*/}
     PATH=$PATH:`printf "%q" $_bin`
 done
 IFS=$SAVEIFS
+
+echo -e "\t\t\t... done"
 
 export EDITOR=vim
 #export TMOUT=1800
@@ -48,25 +51,36 @@ export EDITOR=vim
 #[[ "$PS1" ]] && /usr/games/fortune | /usr/games/cowsay -n
 #show cowsay when you open terminal
 
+
+echo -ne "Pormpt setting \t\t... "
 PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]nobodyzxc@\h\[\033[01;34m\] \W \`if [ \$? = 0 ]; then echo \[\e[33m\]-_-\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\` \[\033[01;34m\]\$\[\033[00m\] "
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
-for ttyi in 1 2 3 4
-	do
-		if [ "$(tty)" = "/dev/tty$ttyi" ]; then
-			export LC_ALL="en_US.UTF-8"
-			export LANGUAGE="en_US.UTF-8"
-			export LANG="en_US.UTF-8"
-		fi
-	done
+#for ttyi in 1 2 3 4
+#	do
+#		if [ "$(tty)" = "/dev/tty$ttyi" ]; then
+#			export LC_ALL="en_US.UTF-8"
+#			export LANGUAGE="en_US.UTF-8"
+#			export LANG="en_US.UTF-8"
+#		fi
+#	done
 
-# Set alias forms
+echo -ne "autojump setting\t... "
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-eval "$(thefuck --alias)"
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
+echo -ne "thefuck setting \t... "
+eval "$(thefuck --alias)"
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
+
+echo -ne "sourcing EnvVars\t... "
 if [ -f ~/bin/EnvVars.sh ];then
     source ~/bin/EnvVars.sh
 fi
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
+echo -ne "aliasing \t\t... "
+# Set alias forms
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
@@ -90,11 +104,11 @@ alias py='python'
 alias cof='_(){ (chrome `cygpath -w "$PWD"`\\$1) 2>/dev/null & };_'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$1; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
-swpclean() { 
+swpclean() {
     if [ -f .*.swp ];then
         for fn in `/bin/ls .*.swp`
-        do 
-            /bin/rm -i $fn 
+        do
+            /bin/rm -i $fn
         done
     fi
 }
@@ -122,3 +136,4 @@ alias ddd='_(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -
 alias ssd='hexo s --draft -p 8080'
 alias line='cd ~/desktop && echo "line.lnk" | cmd && cd -'
 alias uc='rm -rf a.exe *.in *.out *in *out'
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
