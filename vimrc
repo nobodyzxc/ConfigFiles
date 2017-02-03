@@ -1,4 +1,5 @@
 "My leader setting
+set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 let mapleader = "\<Space>"
 "nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
@@ -42,7 +43,7 @@ filetype plugin indent on
 
 
 "ShowTrailingWhitespace , clear all <space>$
-nnoremap <leader>c :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <Leader><Leader> :%s/\s\+$//<cr>:let @/=''<CR>
 
 " NERDTree config
  map <F12> :NERDTreeToggle<CR>
@@ -98,10 +99,10 @@ function PROG()
     set nosmartindent
     set cindent comments=sr:/*,mb:*,el:*/,:// cino=>s,e0,n0,f0,{0,}0,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
     set cinoptions=t0
-    imap <C-a>f <END><CR>for(;;) {<CR>}<LEFT>
-                \<CR><UP><UP><UP><RIGHT><RIGHT><RIGHT><RIGHT><RIGHT>
-    imap <C-a>w <END><CR>while( ) {<CR>}<LEFT>
-                \<CR><UP><UP><UP><END><LEFT><LEFT>
+"    imap <C-a>f <END><CR>for(;;) {<CR>}<LEFT>
+"                \<CR><UP><UP><UP><RIGHT><RIGHT><RIGHT><RIGHT><RIGHT>
+"    imap <C-a>w <END><CR>while( ) {<CR>}<LEFT>
+"                \<CR><UP><UP><UP><END><LEFT><LEFT>
     set formatoptions=tcqr
 endfunction
 
@@ -171,3 +172,8 @@ set cursorline
 hi CursorLine ctermbg=none cterm=underline
 set clipboard=unnamed
 filetype indent on "for php.vim & html.vim in .vimrc/indent
+
+"have Vim jump to the last position
+if has("autocmd")
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
