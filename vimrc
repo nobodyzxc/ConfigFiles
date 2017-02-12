@@ -1,11 +1,13 @@
 "My leader setting
 set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 let mapleader = "\<Space>"
-"nnoremap <Leader>w :w<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
+nnoremap <Leader>/ :noh<CR>
 nnoremap <Leader>  :
+nmap <Leader>a :!echo --==<C-R><C-w>==-- ;abbrev <C-R><C-W><CR>
+nmap <Leader>t :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 imap jk <ESC>
 
 "vundle below
@@ -20,6 +22,7 @@ Bundle 'gmarik/vundle'
 " github repos below
 "Bundle 'Valloric/YouCompleteMe' "Wrong , size too large , I don't know why.
 Bundle 'scrooloose/nerdtree'
+Bundle "hotoo/pangu.vim"
 
 " vim-scripts repos
 Bundle 'taglist.vim'
@@ -34,6 +37,7 @@ Bundle 'ShowTrailingWhitespace'
 
 filetype plugin indent on
 
+"* Bundle Cheatsheet
 ":BundleInstall
 ":BundleUpdate
 ":BundleClean
@@ -43,13 +47,16 @@ filetype plugin indent on
 
 
 "ShowTrailingWhitespace , clear all <space>$
-nnoremap <Leader><Leader> :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <Leader><Leader> ma:%s/\s\+$//<cr>:let @/=''<CR>`a
 
 " NERDTree config
  map <F12> :NERDTreeToggle<CR>
  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
  map <F11> :TlistToggle<CR>
+
+" pangu
+autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 
 " JavaComplete
 "setlocal omnifunc=javacomplete#Complete

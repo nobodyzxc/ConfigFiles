@@ -30,7 +30,8 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 export TERM=xterm
 export PS2="cont> "
 export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin
-
+export CPATH="$HOME/lib"
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
 #    `/bin/ls -d /cygdrive/c/Program\ Files/*` \
@@ -84,11 +85,13 @@ echo -ne "aliasing \t\t... "
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
+alias v='vim'
 alias irssi='env TERM=xterm-color irssi'
 alias ducks='du -ks * |sort -rn |head -20'
 
 alias rm='rm -i'
 alias vb='vim ~/.bashrc'
+alias vc='vim ~/.vimrc'
 alias sb='source ~/.bashrc'
 alias cn='cat ~/bin/note.txt'
 alias to='. ~/bin/to'
@@ -101,7 +104,7 @@ alias la='ls -a'
 alias tm='tmux'
 alias py='python'
 
-alias cof='_(){ (chrome `cygpath -w "$PWD"`\\$1) 2>/dev/null & };_'
+alias cof='_(){ (chrome `cygpath -w "$PWD"`\\$1) 1>/dev/null 2>/dev/null & };_'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$1; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 swpclean() {
@@ -114,7 +117,7 @@ swpclean() {
 }
 alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
 alias install='~/download/setup-x86_64'
-alias Chrome='chrome.exe 2>/dev/null &'
+alias Chrome='chrome.exe 2>/dev/null 1>/dev/null &'
 alias ppt='_(){ ksolaunch.exe  /wpp /w /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
 alias word='_(){ ksolaunch.exe  /w /wps /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
 alias exp='_(){ explorer `cygpath -w "$PWD"`\\$1; };_'
@@ -136,4 +139,5 @@ alias ddd='_(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -
 alias ssd='hexo s --draft -p 8080'
 alias line='cd ~/desktop && echo "line.lnk" | cmd && cd -'
 alias uc='rm -rf a.exe *.in *.out *in *out'
+alias db='mysql -u root -p'
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
