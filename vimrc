@@ -1,8 +1,10 @@
 "My leader setting
 set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 let mapleader = "\<Space>"
+nnoremap <Leader>s :VimShellPop<CR>
 nnoremap <Leader>x :x<CR>
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>jq :q!<CR>
 nnoremap <Leader>q :q<CR>
 nnoremap <Leader>/ :noh<CR>
 nnoremap <Leader>  :
@@ -22,8 +24,9 @@ Bundle 'gmarik/vundle'
 " github repos below
 "Bundle 'Valloric/YouCompleteMe' "Wrong , size too large , I don't know why.
 Bundle 'scrooloose/nerdtree'
-Bundle "hotoo/pangu.vim"
-
+Bundle 'hotoo/pangu.vim'
+Bundle 'shougo/vimshell.vim'
+Bundle 'shougo/vimproc.vim'
 " vim-scripts repos
 Bundle 'taglist.vim'
 Bundle 'ShowTrailingWhitespace'
@@ -50,10 +53,10 @@ filetype plugin indent on
 nnoremap <Leader><Leader> ma:%s/\s\+$//<cr>:let @/=''<CR>`a
 
 " NERDTree config
- map <F12> :NERDTreeToggle<CR>
- autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
+map <F12> :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 
- map <F11> :TlistToggle<CR>
+map <F11> :TlistToggle<CR>
 
 " pangu
 autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()

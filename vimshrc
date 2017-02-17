@@ -1,6 +1,5 @@
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
-alias vim='env TERM=xterm-color vim'
 alias v='vim'
 alias irssi='env TERM=xterm-color irssi'
 alias ducks='du -ks * |sort -rn |head -20'
@@ -47,4 +46,3 @@ alias ssd='hexo s --draft -p 8080'
 alias line='cd ~/desktop && echo "line.lnk" | cmd && cd -'
 alias uc='rm -rf a.exe *.in *.out *in *out'
 alias db='mysql -u root -p'
-
