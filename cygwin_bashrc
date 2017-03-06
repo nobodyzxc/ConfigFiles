@@ -1,5 +1,4 @@
 #nobodyzxc profile for cygwin
-
 umask 002
 set nu
 export USERNAME=`/usr/bin/whoami`
@@ -26,7 +25,6 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
-
 export TERM=xterm
 export PS2="cont> "
 export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin
@@ -54,7 +52,9 @@ export EDITOR=vim
 
 
 echo -ne "Pormpt setting \t\t... "
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]nobodyzxc@\h\[\033[01;34m\] \W \`if [ \$? = 0 ]; then echo \[\e[33m\]-_-\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\` \[\033[01;34m\]\$\[\033[00m\] "
+#PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]nobodyzxc@\h\[\033[01;34m\] \W \`if [ \$? = 0 ]; then echo \[\e[33m\]-_-\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\` \[\033[01;34m\]\$\[\033[00m\] "
+
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]me@\l\[\033[01;34m\] \W \[\e[33m\]%\j \`if [ \$? = 0 ]; then echo \[\e[34m\]\$\[\e[0m\]; else echo \[\e[31m\]!\[\e[0m\]; fi\` "
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
 #for ttyi in 1 2 3 4
@@ -66,21 +66,21 @@ if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 #		fi
 #	done
 
-echo -ne "autojump setting\t... "
+#echo -ne "TheFuck setting \t... "
+#eval "$(thefuck --alias)"
+#if [ $? == 0 ];then echo "done"; else echo "failed"; fi
+
+echo -ne "AutoJump setting\t... "
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
-echo -ne "thefuck setting \t... "
-eval "$(thefuck --alias)"
-if [ $? == 0 ];then echo "done"; else echo "failed"; fi
-
-echo -ne "sourcing EnvVars\t... "
+echo -ne "Sourcing EnvVars\t... "
 if [ -f ~/bin/EnvVars.sh ];then
     source ~/bin/EnvVars.sh
 fi
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
-echo -ne "aliasing \t\t... "
+echo -ne "Aliasing \t\t... "
 # Set alias forms
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
@@ -116,20 +116,21 @@ swpclean() {
     fi
 }
 alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
-alias install='~/download/setup-x86_64'
-alias Chrome='chrome.exe 2>/dev/null 1>/dev/null &'
+alias inst='~/download/setup-x86_64'
+alias g='chrome.exe 2>/dev/null 1>/dev/null &'
 alias ppt='_(){ ksolaunch.exe  /wpp /w /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
 alias word='_(){ ksolaunch.exe  /w /wps /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
 alias exp='_(){ explorer `cygpath -w "$PWD"`\\$1; };_'
 alias pp='_(){ PS1="$1"; };_'
 alias outt='rm -f /etc/totalExit && exit'
-alias xlat='chrome https://translate.google.com.tw/?hl=zh-TW&authuser=0'
+alias xlat='_(){ chrome https://translate.google.com.tw/?hl=zh-TW#en/zh-TW/$1; };_'
 alias ghci='rlwrap ~/bin/haskell_bin/ghcii.sh'
+alias rkt='rlwrap racket3m.exe'
 alias mgw-c='~/bin/MinGW64/gcc.exe -static -lopengl32 -lgdi32 -lglu32 -mwindows'
 alias mgw-cpp='~/bin/MinGW64/g++.exe -static -lopengl32 -lgdi32 -lglu32 -mwindows'
 alias cgp='~/bin/MinGW64/x86_64-w64-mingw32-c++.exe -static -lopengl32 -lgdi32 -lglu32'
 alias pm='ps -ef | grep `whoami`'
-alias sudo='cygstart --action=runas "$@"'
+alias open='cygstart'
 alias w='echo "only you"'
 alias j='_(){ cd `autojump $*`; };_'
 alias g++='g++ -Wall'
@@ -140,4 +141,9 @@ alias ssd='hexo s --draft -p 8080'
 alias line='cd ~/desktop && echo "line.lnk" | cmd && cd -'
 alias uc='rm -rf a.exe *.in *.out *in *out'
 alias db='mysql -u root -p'
+alias dbstart='/usr/bin/mysqld_safe --datadir="/var/lib/mysql" &'
+alias dbshutdown='/usr/bin/mysqladmin -u root shutdown'
+alias tp='_(){ cp ~/oj/template.cc ./$1.cc; };_'
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
+# sudo taskmgr
+# cyg-get
