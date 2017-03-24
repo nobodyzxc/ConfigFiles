@@ -5,7 +5,7 @@ set cindent
 set smarttab
 set expandtab "set tab to space
 set autoindent
-map <tab> <c-p>
+imap <tab>c <c-p>
 syntax on
 "hi comment ctermfg=cyan
 hi comment ctermfg=blue

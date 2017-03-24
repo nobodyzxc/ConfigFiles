@@ -16,7 +16,7 @@ nmap <Leader>jq :q!<CR>
 nmap <Leader>/ :noh<CR>
 
 set lazyredraw "for gg=G , prevent screen blinking
-nmap <Leader>= magg=G`a<CR>
+nmap <Leader>= mcHmhLmlgg=G`h`l`c
 
 nmap <Leader>k <C-W><C-W>
 nmap <Leader>vc :source $MYVIMRC<CR>
@@ -72,9 +72,23 @@ Bundle 'hotoo/pangu.vim'
 autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 
 Bundle 'ervandew/supertab'
+set complete=.,w,b,u,t,i,w,
+
+Bundle 'asins/vim-dict'
+autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
+
 Bundle 'shougo/vimshell.vim'
 Bundle 'shougo/vimproc.vim'
 Bundle 'luochen1990/rainbow'
+Bundle 'neovimhaskell/haskell-vim'
+let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+let g:haskell_classic_highlighting = 1
 
 let g:rainbow_active=1
 
@@ -139,6 +153,7 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 " than 50 lines of registers
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
+
 "set dictionary=~/.dict  " my dictionary :p
 
 set expandtab           " expand tabs to spaces.
@@ -163,7 +178,11 @@ set fileencodings=utf-8,cp936,big5,latin1
 set background=dark
 
 autocmd FileType make setlocal noexpandtab
-autocmd FileType java set omnifunc=javacomplete#Complete
+
+setlocal omnifunc=syntaxcomplete#Complete
+"see complete funcions' param
+set cot+=menuone
+
 
 colorscheme default
 
