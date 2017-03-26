@@ -1,11 +1,51 @@
-"My leader setting
-"
+"traditional setting
+
+set secure
+set backspace=2         " allow backspacing over everything in insert mode
+set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+" than 50 lines of registers
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+
+set expandtab           " expand tabs to spaces.
+set wildchar=<TAB>      " such as <TAB> in shell
+set smarttab
+set tabstop=4
+set shiftwidth=4
+
+set nu
+set t_Co=8              " number of colors
+set t_Sf=[1;3%p1%dm   " set foreground color
+set t_Sb=[1;4%p1%dm   " set background color
+set showcmd             " show command
+set showmode            " show current mode
+set incsearch           " While typing a search pattern, show immediately
+" where the so far typed pattern matches.
+set hlsearch            " When there is a previous search pattern,
+" highlight all its matches.
+syntax on               " show parts of the text in another font or color
+
+set fileencodings=utf-8,cp936,big5,latin1
+set background=dark
+
+autocmd FileType make setlocal noexpandtab
+
+setlocal omnifunc=syntaxcomplete#Complete
+set cot+=menuone
+
+
+colorscheme default
+
+highlight Comment    ctermfg=DarkCyan
+highlight SpecialKey ctermfg=Yellow
+
+"Leader setting
 
 let g:intvon = 0
 let mapleader = "\<Space>"
 set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 
-"mapping
+"Mapping
 imap jk <ESC>
 nmap <Leader>x :x<CR>
 nmap <Leader>w :w<CR>
@@ -26,13 +66,12 @@ nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
 nmap <Leader>t :!echo --- <C-R><C-w> --- ;ici <C-R><C-W><CR>
-"nmap <C-_> ma<C-V>0I//<ESC><ESC>`a
-"vnoremap <C-_> ma<C-V>0I//<ESC><ESC>`a
 
 function! TogIntv()
     if g:intvon == 0
         let g:intvon = 1
         VimShellInteractive racket3m.exe
+        set syntax=scheme
     elseif g:intvon == 1
         let g:intvon = 2
         wincmd w
@@ -44,13 +83,15 @@ function! TogIntv()
 endfunction
 
 function! LoadIntv()
-    if g:intvon != 0
+    if g:intvon == 1
         exe "w"
         call vimshell#interactive#send('(load "'.@%.'")')
     endif
 endfunction
 
-"vundle below
+
+"Vundle
+
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible                " be iMproved
 filetype off                    " required!
@@ -145,50 +186,8 @@ filetype plugin indent on
 ":BundleSearch
 "TCL ~$ vim +BundleInstall +qall
 
-"traditional setting
 
-set secure
-set backspace=2         " allow backspacing over everything in insert mode
-set viminfo='20,\"50    " read/write a .viminfo file, don't store more
-" than 50 lines of registers
-set history=50          " keep 50 lines of command line history
-set ruler               " show the cursor position all the time
-
-"set dictionary=~/.dict  " my dictionary :p
-
-set expandtab           " expand tabs to spaces.
-set wildchar=<TAB>      " such as <TAB> in shell
-set smarttab
-set tabstop=4
-set shiftwidth=4
-
-set nu
-set t_Co=8              " number of colors
-set t_Sf=[1;3%p1%dm   " set foreground color
-set t_Sb=[1;4%p1%dm   " set background color
-set showcmd             " show command
-set showmode            " show current mode
-set incsearch           " While typing a search pattern, show immediately
-" where the so far typed pattern matches.
-set hlsearch            " When there is a previous search pattern,
-" highlight all its matches.
-syntax on               " show parts of the text in another font or color
-
-set fileencodings=utf-8,cp936,big5,latin1
-set background=dark
-
-autocmd FileType make setlocal noexpandtab
-
-setlocal omnifunc=syntaxcomplete#Complete
-"see complete funcions' param
-set cot+=menuone
-
-
-colorscheme default
-
-highlight Comment    ctermfg=DarkCyan
-highlight SpecialKey ctermfg=Yellow
-
+" line color
 let rngbeg=0
 autocmd FileType markdown,text let rngbeg=100
 autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
