@@ -1,5 +1,6 @@
-"traditional setting
+"normal setting
 
+"set ignorecase
 set secure
 set backspace=2         " allow backspacing over everything in insert mode
 set viminfo='20,\"50    " read/write a .viminfo file, don't store more
@@ -54,7 +55,7 @@ nmap <Leader>n :n<CR>
 nmap <Leader>N :N<CR>
 nmap <Leader>jq :q!<CR>
 nmap <Leader>/ :noh<CR>
-
+nmap <Leader>; :
 set lazyredraw "for gg=G , prevent screen blinking
 nmap <Leader>= mcHmhLmlgg=G`h`l`c
 
@@ -66,12 +67,28 @@ nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
 nmap <Leader>t :!echo --- <C-R><C-w> --- ;ici <C-R><C-W><CR>
+nmap <Leader>g :silent !chrome <C-R><C-A>&<CR>:redraw!<CR>
+nmap <F7> vdiv<ESC>
+noremap u :call MyRe()<CR>
+
+function! MyRe()
+    let y = line(".")
+    let x = col(".")
+    u
+    call cursor(y, x)
+endfunction
 
 function! TogIntv()
     if g:intvon == 0
         let g:intvon = 1
-        VimShellInteractive racket3m.exe
-        set syntax=scheme
+        if &ft == "scheme"
+            VimShellInteractive plt-r5rs.exe
+            "VimShellInteractive ./biwas
+            set syntax=scheme
+        elseif &ft == "python"
+            VimShellInteractive python
+            set syntax=python
+        endif
     elseif g:intvon == 1
         let g:intvon = 2
         wincmd w
@@ -85,12 +102,18 @@ endfunction
 function! LoadIntv()
     if g:intvon == 1
         exe "w"
-        call vimshell#interactive#send('(load "'.@%.'")')
+        if &ft == "scheme"
+            call vimshell#interactive#send('(load "'.@%.'")')
+        elseif &ft == "python"
+            call vimshell#interactive#send('execfile("'.@%.'")')
+        endif
+
     endif
 endfunction
 
 
 "Vundle
+"Bundle 'vim-ruby/vim-ruby'
 
 "git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible                " be iMproved
@@ -101,8 +124,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " github repos below
-"Bundle 'Valloric/YouCompleteMe'
-""Wrong , size too large , I don't know why.
 
 Bundle 'scrooloose/nerdtree'
 map <F12> :NERDTreeToggle<CR>
@@ -151,13 +172,13 @@ let g:rainbow_conf = {
             \		'int-racket3m': {
             \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
             \		},
-            \		'html': {
-            \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \		},
             \		'*': 0,
             \	}
             \}
-
+"            \		'html': {
+"           \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+"           \		},
+"
 
 " vim-scripts repos
 Bundle 'taglist.vim'

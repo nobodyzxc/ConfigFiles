@@ -1,15 +1,32 @@
 # My configuration files
 
-- ~/.ghci
-- ~/.vimrc
+# local location
+- README.md
 - bashrc
   - cygwin (option - C.utf-8)
-    * ~/.bashrc
     * etc/bash.bashrc
-- ~/.vimshrc(vim-shell - a vim extension)
+    * ~/.bashrc
+- ~/.ghci
+- ~/.gitconfig
 - ~/.inputrc
 - ~/.minttyrc
+- ~/.oj.vim
 - ~/.screenrc
-- ~/.gitconfig
 - ~/.tmux.conf
+- ~/.vimrc
+- ~/.vimshrc(vim-shell - a vim extension)
 
+# github files
+.
+├── README.md
+├── bash.bashrc
+├── cygwin.bashrc
+├── ghci
+├── gitconfig
+├── inputrc
+├── minttyrc
+├── oj.vim
+├── screenrc
+├── tmux.conf
+├── vimrc
+└── vimshrc
