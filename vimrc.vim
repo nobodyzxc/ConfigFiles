@@ -67,7 +67,7 @@ nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
 nmap <Leader>t :!echo --- <C-R><C-w> --- ;ici <C-R><C-W><CR>
-nmap <Leader>g :silent !chrome <C-R><C-A>&<CR>:redraw!<CR>
+nmap <Leader>g :silent !chrome <C-R><C-A>1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
 nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
 

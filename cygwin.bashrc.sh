@@ -59,6 +59,11 @@ echo -ne "Setting Pormpt \t\t... "
 #PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]me@\l\[\033[01;34m\] \W \[\e[33m\]%\j \`if [ \$? = 0 ]; then echo \[\e[34m\]\$\[\e[0m\]; else echo \[\e[31m\]!\[\e[0m\]; fi\` "
 
 # UNICODE
+# echo treat \x01 \x02 as \[ \] in ps
+# They are called NON-PRINT CHARACTERS
+NPB="\x01"
+NPE="\x02"
+
 LGRNFG="\[\033[01;32m\]"
 BLKFG="\[\033[38;5;0m\]"
 BLKBG="\[\033[0m\]"
@@ -70,13 +75,15 @@ YELBG="\[\033[43m\]"
 GRNBG="\[\033[30;48;5;82m\]"
 GRNFG="\[\033[32m\]"
 REDFG="\[\033[31m\]"
+
 psstat() {
     if [ $? = 0 ];then
-        echo -e "${GRNBG:2:16}${BLKFG:2:12} \$ ${BLKBG:2:7}${GRNFG:2:8}"
+        echo -e "${NPB}${GRNBG:2:16}${BLKFG:2:12}${NPE} \$ ${NPB}${BLKBG:2:7}${GRNFG:2:8}${NPE}"
     else
-        echo -e "${YELBG:2:8}${BLKFG:2:12} ${REDFG:2:8}! ${BLKBG:2:7}${YELFG:2:8}"
+        echo -e "${NPB}${YELBG:2:8}${BLKFG:2:12}${NPE} ${NPB}${REDFG:2:8}${NPE}! ${NPB}${BLKBG:2:7}${YELFG:2:8}${NPE}"
     fi
 }
+
 FENCY="${LGRNFG}me@\l ${BLUBG}${BLKFG}${WHIFG} \W ${BLKBG}${BLUFG} ${YELFG}%\j \`psstat\` ${BLKBG}"
 PS1=$FENCY
 

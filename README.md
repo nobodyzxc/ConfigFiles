@@ -19,8 +19,8 @@
 # github files
 .
 ├── README.md
-├── bash.bashrc
-├── cygwin.bashrc
+├── etc.bash.bashrc
+├── cygwin.bashrc.sh
 ├── ghci
 ├── gitconfig
 ├── inputrc
@@ -28,5 +28,5 @@
 ├── oj.vim
 ├── screenrc
 ├── tmux.conf
-├── vimrc
-└── vimshrc
+├── vimrc.vim
+└── vimshrc.sh
