@@ -19,14 +19,25 @@
 # github files
 .
 ├── README.md
+
 ├── etc.bash.bashrc
+
 ├── cygwin.bashrc.sh
+
 ├── ghci
+
 ├── gitconfig
+
 ├── inputrc
+
 ├── minttyrc
+
 ├── oj.vim
+
 ├── screenrc
+
 ├── tmux.conf
+
 ├── vimrc.vim
+
 └── vimshrc.sh
