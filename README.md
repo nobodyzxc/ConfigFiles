@@ -30,5 +30,6 @@
 ├── screenrc
 ├── tmux.conf
 ├── vimrc.vim
+├── extensions.vim
 └── vimshrc.sh
 ```

@@ -111,124 +111,26 @@ function! LoadIntv()
     endif
 endfunction
 
-
-"Vundle
-"Bundle 'vim-ruby/vim-ruby'
-
-"git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-set nocompatible                " be iMproved
-filetype off                    " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-" let Vundle manage Vundle
-Bundle 'gmarik/vundle'
-
-" github repos below
-
-Bundle 'scrooloose/nerdtree'
-map <F12> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-map <F11> :TlistToggle<CR>
-
-Bundle 'hotoo/pangu.vim'
-autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
-
-Bundle 'ervandew/supertab'
-set complete=.,w,b,u,t,i,w,
-
-Bundle 'asins/vim-dict'
-autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
-
-Bundle 'shougo/vimshell.vim'
-Bundle 'shougo/vimproc.vim'
-Bundle 'luochen1990/rainbow'
-Bundle 'neovimhaskell/haskell-vim'
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-let g:haskell_classic_highlighting = 1
-
-let g:rainbow_active=1
-
-let g:rainbow_conf = {
-            \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-            \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-            \	'operators': '_,_',
-            \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \	'separately': {
-            \		'tex': {
-            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \		},
-            \		'lisp': {
-            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \		},
-            \		'scheme': {
-            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \		},
-            \		'int-racket3m': {
-            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \		},
-            \		'*': 0,
-            \	}
-            \}
-"            \		'html': {
-"           \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-"           \		},
-"
-
-" vim-scripts repos
-Bundle 'taglist.vim'
-Bundle 'ShowTrailingWhitespace'
-"ShowTrailingWhitespace , clear all <space>$
-nnoremap <Leader><Leader> ma:%s/\s\+$//<cr>:let @/=''<CR>`a
-
-"Bundle 'vim-airline/vim-airline'
-"Bundle 'artur-shaik/vim-javacomplete2'
-"setlocal omnifunc=javacomplete#Complete
-"inoremap <buffer> . .<C-X><C-O><C-P>
-
-"Bundle 'html5.vim'
-"Bundle 'JavaScript-syntax'
-
-" non github repos
-" Bundle 'git://git.wincent.com/command-t.git'
-
-filetype plugin indent on
-
-"* Bundle Cheatsheet
-":BundleInstall
-":BundleUpdate
-":BundleClean
-":BundleList
-":BundleSearch
-"TCL ~$ vim +BundleInstall +qall
-
-
 " line color
 let rngbeg=0
 autocmd FileType markdown,text let rngbeg=100
 autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
 
-"set colorcolumn=80
 "^ single col
 autocmd VimEnter * if rngbeg > 0 | let &colorcolumn=join(range(rngbeg,999),",")
 "^ pane
 
-"autocmd FileType * highlight ColorColumn ctermbg=147 ctermfg=3 term=reverse guibg=#3a3a3a
-"autocmd FileType * highlight ColorColumn term=reverse ctermbg=4 gui=undercurl guisp=Blu
-"autocmd FileType * highlight ColorColumn term=bold ctermbg=5 guibg=LightMagenta
-"autocmd FileType * highlight colorcolumn term=reverse cterm=reverse guibg=LightGrey
-"autocmd FileType * highlight colorcolumn  term=bold cterm=bold ctermbg=147 ctermfg=3 guifg=Blue
-
-" v Yellow
-"highlight colorcolumn  term=bold cterm=bold ctermbg=147 ctermfg=3
-
 " v Magenta
 autocmd FileType * highlight colorcolumn term=bold ctermfg=5 ctermbg=0 gui=bold
+
+" other available theme
+"term=reverse ctermbg=147 ctermfg=3 guibg=#3a3a3a
+"term=reverse ctermbg=4 gui=undercurl guisp=Blu
+"term=bold ctermbg=5 guibg=LightMagenta
+"term=reverse cterm=reverse guibg=LightGrey
+"term=bold cterm=bold ctermbg=147 ctermfg=3 guifg=Blue
+"Yellow
+"term=bold cterm=bold ctermbg=147 ctermfg=3
 
 set cursorline
 hi CursorLine ctermbg=none cterm=underline
@@ -241,4 +143,3 @@ filetype indent on "for php.vim & html.vim in .vimrc/indent
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
-

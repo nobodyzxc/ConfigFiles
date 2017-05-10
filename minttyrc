@@ -7,7 +7,7 @@ MiddleClickAction=void
 RightClickAction=paste
 CursorType=block
 Scrollbar=none
-Transparency=95
+Transparency=100
 
 Term=xterm
 Columns=84

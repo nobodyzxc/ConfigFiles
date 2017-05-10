@@ -19,39 +19,30 @@ echo "chcp 65001" | cmd >/dev/null
 
 shopt -s nocaseglob #no identity up or low case
 
-# Less Colors for Man Pages
-export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
-export LESS_TERMCAP_md=$'\E[01;38;5;74m'  # begin bold
-export LESS_TERMCAP_me=$'\E[0m'           # end mode
-export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
-export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
-export LESS_TERMCAP_ue=$'\E[0m'           # end underline
-export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 export TERM=xterm
 export PS2="cont> "
 export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin:~/.local/bin
 export CPATH="$HOME/lib"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
-#    `/bin/ls -d /cygdrive/c/Program\ Files/*` \
-#    `/bin/ls -d /cygdrive/c/Program\ Files\ \(x86\)/*`
 echo "EnvPath..."
-for _bin in `/bin/ls -d ~/bin/*_bin`
+for _bin in ~/bin/*_bin
 do
-    printf "\t%q\n" ${_bin##*/}
-    PATH=$PATH:`printf "%q" $_bin`
+    [ -e "$_bin" ] && \
+        printf "\t%q\n" ${_bin##*/} && \
+        PATH=$PATH:`printf "%q" $_bin` \
+        || echo "There's no *_bin in your bin dir"
 done
 IFS=$SAVEIFS
 
 echo -e "\t\t\t... done"
 
 export EDITOR=vim
-#export TMOUT=1800
 
 #[[ "$PS1" ]] && /usr/games/fortune | /usr/games/cowsay -n
 #show cowsay when you open terminal
-
 
 echo -ne "Setting Pormpt \t\t... "
 
@@ -84,19 +75,9 @@ psstat() {
     fi
 }
 
-FENCY="${LGRNFG}me@\l ${BLUBG}${BLKFG}${WHIFG} \W ${BLKBG}${BLUFG} ${YELFG}%\j \`psstat\` ${BLKBG}"
-PS1=$FENCY
+PS1="${LGRNFG}me@\l ${BLUBG}${BLKFG}${WHIFG} \W ${BLKBG}${BLUFG} ${YELFG}%\j \`psstat\` ${BLKBG}"
 
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
-
-#for ttyi in 1 2 3 4
-#	do
-#		if [ "$(tty)" = "/dev/tty$ttyi" ]; then
-#			export LC_ALL="en_US.UTF-8"
-#			export LANGUAGE="en_US.UTF-8"
-#			export LANG="en_US.UTF-8"
-#		fi
-#	done
 
 #echo -ne "TheFuck setting \t... "
 #eval "$(thefuck --alias)"
@@ -202,7 +183,7 @@ alias post='j post'
 alias cpath='_(){ cygpath $1 `pwd` | putclip -d; };_' #cygutils-extra needed
 alias apt-get='apt-cyg'
 alias cpf='_(){ cat $1 | putclip; };_'
-
+alias mail='_(){ chrome https://mail.google.com/mail/u/$1/#inbox; };_'
 #alias cat="_(){  cat \$@; echo \"I'm  ok.\"; };_"
 POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
 if [ -f $POWERLINE_SCRIPT ]; then
