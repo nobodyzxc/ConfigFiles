@@ -5,15 +5,6 @@ umask 002
 set nu
 export USERNAME=`/usr/bin/whoami`
 
-#export LANG="zh_TW.UTF-8"
-#export LC_CTYPE="zh_TW.UTF-8"
-#export LC_NUMERIC="zh_TW.UTF-8"
-#export LC_TIME="zh_TW.UTF-8"
-#export LC_COLLATE="zh_TW.UTF-8"
-#export LC_MONETARY="zh_TW.UTF-8"
-#export LC_MESSAGES="zh_TW.UTF-8"
-#export LC_ALL="zh_TW.UTF-8"
-
 echo "chcp 65001" | cmd >/dev/null
 # set utf-8 for windows cygwin - into cmd
 
@@ -98,10 +89,7 @@ echo -ne "Aliasing \t\t... "
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
-alias v='vim -u /cygdrive/d/workSpace/github/MyConfFiles/oj.vim'
-
 alias e='emacs'
-
 alias irssi='env TERM=xterm-color irssi'
 alias ducks='du -ks * |sort -rn |head -20'
 
@@ -110,10 +98,6 @@ alias vb='vim ~/.bashrc'
 # 'gf' in vim to open a filename
 alias vc='vim ~/.vimrc'
 alias sb='source ~/.bashrc'
-alias cn='cat ~/bin/note.txt'
-alias to='. ~/bin/to'
-alias note='_(){ echo $1 >> note.txt; }; _'
-
 alias mcd='_(){ mkdir -m 715 $1 ; cd $1 ; } ; _'
 alias l='clear'
 alias ll='ls -la'
@@ -122,9 +106,6 @@ alias tm='tmux'
 alias python='python3'
 alias py='python3'
 alias py2='python2'
-PYW='/cygdrive/c/Users/dici8/AppData/Local/Programs/Python/Python36-32/python.exe'
-alias pyw='_(){ if [ -z "$1" ];then echo "pls give a gui prog of python"; else $PYW $1; fi; };_'
-
 alias cof='_(){ (chrome `cygpath -w "$PWD"`\\$1) 1>/dev/null 2>/dev/null & };_'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$1; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
@@ -137,55 +118,32 @@ swpclean() {
     fi
 }
 alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
-alias inst='~/download/setup-x86_64'
 alias g='chrome.exe 2>/dev/null 1>/dev/null &'
-alias ppt='_(){ ksolaunch.exe  /wpp /w /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
-alias word='_(){ ksolaunch.exe /wps /w /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
-alias exp='_(){ explorer `cygpath -w "$PWD"`\\$1; };_'
-alias pp='_(){ PS1="$1"; };_'
+alias exp='_(){ explorer `cygpath -w "$PWD"`; };_' #\\$1
 alias outt='rm -f /etc/totalExit && exit'
-alias xlat='_(){ chrome https://translate.google.com.tw/?hl=zh-TW#en/zh-TW/$1; };_'
-alias ghci='rlwrap ~/bin/haskell_bin/ghcii.sh'
-alias rkt='rlwrap racket3m.exe'
-alias biwas='rlwrap ~/npm/node_modules/.bin/biwas'
-alias rp='racket3m.exe <'
-alias mingcc='x86_64-w64-mingw32-gcc.exe -static -lopengl32 -lgdi32 -lglu32 -mwindows'
-alias ming++='x86_64-w64-mingw32-g++.exe -static -lopengl32 -lgdi32 -lglu32 -mwindows'
-alias cgp='~/bin/MinGW64/x86_64-w64-mingw32-c++.exe -static -lopengl32 -lgdi32 -lglu32'
 alias pm='ps -efu `whoami`'
 alias open='cygstart'
-alias w='echo "only you"'
-#alias j='_(){ cd `autojump $*`; };_'
 alias g++='g++ -Wall'
 alias gcc='gcc -Wall'
 alias sss='_(){ hexo clean && hexo g && hexo s -p 8080; };_'
 alias ddd='_(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -i && git add -u && git commit -m "backup" && git pm; };_'
 alias ssd='hexo s --draft -p 8080'
-alias line='cd ~/desktop && echo "line.lnk" | cmd && cd -'
-alias uc='rm -rf a.exe *.in *.out in* out* && clean'
+alias uc='rm -rf a.exe *.in *.out in* out* *.class && clean'
 alias db='mysql -u root -p'
 alias dbstart='/usr/bin/mysqld_safe --datadir="/var/lib/mysql" &'
 alias dbshutdown='/usr/bin/mysqladmin -u root shutdown'
-alias tp='_(){ cp ~/oj/template.cc ./$1.cc; };_'
-alias mk='landslide make.cfg'
 alias soft='control.exe appwiz.cpl'
 alias sudo='cygstart --action=runas'
-alias kl='_(){ pm | grep $1 | getcol 1; };_'
 alias bc='bc -l'
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 # sudo taskmgr
 # cyg-get
-alias catch='_(){ scp -r s10410@cherry.cs.nccu.edu.tw:/tmp/$1 .; };_'
-alias share='_(){ scp -r $@ s10410@cherry.cs.nccu.edu.tw:/tmp; };_'
-alias wipe='_(){  ssh s10410@cherry.cs.nccu.edu.tw rm -ir /tmp/$1; };_'
 alias node='rlwrap node -i'
-alias post='j post'
-alias cpath='_(){ cygpath $1 `pwd` | putclip -d; };_' #cygutils-extra needed
 alias apt-get='apt-cyg'
+alias cpath='_(){ cygpath $1 `pwd` | putclip -d; };_' #cygutils-extra needed
 alias cpf='_(){ cat $1 | putclip; };_'
 alias mail='_(){ chrome https://mail.google.com/mail/u/$1/#inbox; };_'
-#alias cat="_(){  cat \$@; echo \"I'm  ok.\"; };_"
+alias gcloud='gcloud.cmd'
+alias asmgcc='i686-w64-mingw32-gcc.exe'
 POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
-if [ -f $POWERLINE_SCRIPT ]; then
-  source $POWERLINE_SCRIPT
-fi
+if [ -f $POWERLINE_SCRIPT ]; then source $POWERLINE_SCRIPT; fi

@@ -10,8 +10,8 @@ Scrollbar=none
 Transparency=100
 
 Term=xterm
-Columns=84
-Rows=28
+Columns=120
+Rows=35
 Locale=C
 Charset=UTF-8
 FontSmoothing=default

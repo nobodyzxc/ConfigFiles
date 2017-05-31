@@ -1,5 +1,7 @@
-"normal setting
 
+
+"normal setting
+set encoding=utf8
 "set ignorecase
 set secure
 set backspace=2         " allow backspacing over everything in insert mode
@@ -40,6 +42,9 @@ colorscheme default
 highlight Comment    ctermfg=DarkCyan
 highlight SpecialKey ctermfg=Yellow
 
+"retain lines above or below cursor
+"set scrolloff=7
+
 "Leader setting
 
 let g:intvon = 0
@@ -48,6 +53,14 @@ set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 
 "Mapping
 imap jk <ESC>
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+" Go to home and end using capitalized directions
+noremap H ^
+noremap L $
+
 nmap <Leader>x :x<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
@@ -67,9 +80,11 @@ nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
 nmap <Leader>t :!echo --- <C-R><C-w> --- ;ici <C-R><C-W><CR>
-nmap <Leader>g :silent !chrome <C-R><C-A>1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
+nmap <Leader>g :silent !chrome <C-R><C-A> 1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
+nmap <Leader>m :call DownAsMKD('<C-R><C-A>')<CR>
 nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
+map <leader>zz :call ToggleFold()<cr>
 
 function! MyRe()
     let y = line(".")
@@ -79,11 +94,18 @@ function! MyRe()
 endfunction
 
 function! TogIntv()
+    let b:ext = expand('%:e')
     if g:intvon == 0
         let g:intvon = 1
         if &ft == "scheme"
-            VimShellInteractive plt-r5rs.exe
-            "VimShellInteractive ./biwas
+            if b:ext == "ss"
+                VimShellInteractive racket3m.exe
+            elseif b:ext == "scm"
+                VimShellInteractive plt-r5rs.exe
+            else
+                VimShellInteractive plt-r5rs.exe
+                "VimShellInteractive ./biwas
+            endif
             set syntax=scheme
         elseif &ft == "python"
             VimShellInteractive python
@@ -111,10 +133,47 @@ function! LoadIntv()
     endif
 endfunction
 
+function! DownAsMKD(url)
+    echo 'not ready yet'
+endfunction
+
+
+let g:FoldMethod = 0
+fun! ToggleFold()
+    if g:FoldMethod == 0
+        set foldmethod=syntax
+        let g:FoldMethod = 1
+    endif
+
+    if g:FoldMethod == 1
+        exe "normal! zM"
+        let g:FoldMethod = 2
+    else
+        exe "normal! zR"
+        let g:FoldMethod = 1
+    endif
+endfun
+
+" Is better way to zoom windows in Vim than ZoomWin?
+" Zoom / Restore window.
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <Leader>zm :ZoomToggle<CR>
+
 " line color
 let rngbeg=0
 autocmd FileType markdown,text let rngbeg=100
-autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
+"autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
 
 "^ single col
 autocmd VimEnter * if rngbeg > 0 | let &colorcolumn=join(range(rngbeg,999),",")

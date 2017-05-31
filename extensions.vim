@@ -23,7 +23,7 @@ Bundle 'ervandew/supertab'
 set complete=.,w,b,u,t,i,w,
 
 Bundle 'asins/vim-dict'
-autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
+"autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
 
 Bundle 'shougo/vimshell.vim'
 Bundle 'shougo/vimproc.vim'
