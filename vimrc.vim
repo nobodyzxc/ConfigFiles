@@ -10,11 +10,13 @@ set viminfo='20,\"50    " read/write a .viminfo file, don't store more
 set history=50          " keep 50 lines of command line history
 set ruler               " show the cursor position all the time
 
-set expandtab           " expand tabs to spaces.
 set wildchar=<TAB>      " such as <TAB> in shell
 set smarttab
-set tabstop=4
-set shiftwidth=4
+
+set expandtab           " expand tabs to spaces.
+autocmd FileType scheme set tabstop=2 shiftwidth=2
+autocmd Filetype * if &ft!="scheme"|set tabstop=4 shiftwidth=4|endif
+autocmd Filetype * if &ft=="markdown"|set tabstop=3 shiftwidth=3|endif
 
 set nu
 set t_Co=8              " number of colors
@@ -48,6 +50,7 @@ highlight SpecialKey ctermfg=Yellow
 "Leader setting
 
 let g:intvon = 0
+let g:cwd = fnamemodify('.', ':p')
 let mapleader = "\<Space>"
 set path+=/usr/lib/gcc/x86_64-pc-cygwin/5.4.0/include/c++
 
@@ -95,21 +98,41 @@ endfunction
 
 function! TogIntv()
     let b:ext = expand('%:e')
+    if &co < 140
+        let g:vimshell_split_command = 'split'
+    else
+        let g:vimshell_split_command = 'vsplit'
+    endif
     if g:intvon == 0
         let g:intvon = 1
         if &ft == "scheme"
             if b:ext == "ss"
-                VimShellInteractive racket3m.exe
+                "VimShellInteractive plt-r5rs.exe
+                "VimShellInteractive racket3m.exe
+                VimShellInteractive racket.exe -i
             elseif b:ext == "scm"
-                VimShellInteractive plt-r5rs.exe
+                VimShellInteractive racket.exe -l r5rs -i
             else
-                VimShellInteractive plt-r5rs.exe
+                VimShellInteractive racket3m.exe
                 "VimShellInteractive ./biwas
             endif
             set syntax=scheme
         elseif &ft == "python"
-            VimShellInteractive python
+            "VimShellInteractive python
+            VimShellInteractive python3
             set syntax=python
+        elseif g:cwd == "/cygdrive/d/workSpace/ew/ruby-koans/"
+            VimShellPop
+            "VimShellInteractive
+        elseif &ft == "ruby"
+            VimShellInteractive irb
+            set syntax=ruby
+        elseif &ft == "haskell"
+            VimShellInteractive /home/dici8/bin/haskell_bin/ghcii.sh
+            set syntax=haskell
+        elseif &ft == "javascript"
+            VimShellInteractive /home/dici8/bin/node_bin/node.exe -i
+            set syntax=javascript
         endif
     elseif g:intvon == 1
         let g:intvon = 2
@@ -127,7 +150,16 @@ function! LoadIntv()
         if &ft == "scheme"
             call vimshell#interactive#send('(load "'.@%.'")')
         elseif &ft == "python"
-            call vimshell#interactive#send('execfile("'.@%.'")')
+            "call vimshell#interactive#send('execfile("'.@%.'")') "py2
+            call vimshell#interactive#send('exec(open("'.@%.'").read())')
+        elseif g:cwd == "/cygdrive/d/workSpace/ew/ruby-koans/"
+            call vimshell#interactive#send('./knock')
+        elseif &ft == "ruby"
+            call vimshell#interactive#send('load "'.@%.'"')
+        elseif &ft == "haskell"
+            call vimshell#interactive#send(':load "'.@%.'"')
+        elseif &ft == "javascript"
+            call vimshell#interactive#send('.load '.@%.'')
         endif
 
     endif
@@ -173,7 +205,7 @@ nnoremap <silent> <Leader>zm :ZoomToggle<CR>
 " line color
 let rngbeg=0
 autocmd FileType markdown,text let rngbeg=100
-"autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
+autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
 
 "^ single col
 autocmd VimEnter * if rngbeg > 0 | let &colorcolumn=join(range(rngbeg,999),",")

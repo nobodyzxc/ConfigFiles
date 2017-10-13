@@ -12,19 +12,45 @@ Bundle 'gmarik/vundle'
 " github repos below
 
 Bundle 'scrooloose/nerdtree'
-map <F12> :NERDTreeToggle<CR>
+map <F11> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-map <F11> :TlistToggle<CR>
+let NERDTreeQuitOnOpen=0
+
+"Bundle 'taglist.vim'
+""cursor and python not open
+Bundle 'majutsushi/tagbar'
+"instead taglist
+map <F12> :TagbarToggle<CR>
+if &diff
+    "nothing
+else
+    autocmd VimEnter * nested :call tagbar#autoopen(0)
+    autocmd FileType c,cpp,python,hs,scheme nested :TagbarOpen
+    let g:tagbar_map_showproto='<space><space>'
+endif
 
 Bundle 'hotoo/pangu.vim'
 autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
 
-Bundle 'ervandew/supertab'
-set complete=.,w,b,u,t,i,w,
+"Bundle 'ervandew/supertab'
+"set complete=.,w,b,u,t,i,w,
+"smart mapping for tab completion
+function InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+
+inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+
 
 Bundle 'asins/vim-dict'
 "autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
 
+"Bundle 'tpope/vim-surround.vim'
 Bundle 'shougo/vimshell.vim'
 Bundle 'shougo/vimproc.vim'
 Bundle 'luochen1990/rainbow'
@@ -67,7 +93,7 @@ let g:rainbow_conf = {
 "
 
 " vim-scripts repos
-Bundle 'taglist.vim'
+
 Bundle 'ShowTrailingWhitespace'
 "ShowTrailingWhitespace , clear all <space>$
 nnoremap <Leader><Leader> ma:%s/\s\+$//<cr>:let @/=''<CR>`a

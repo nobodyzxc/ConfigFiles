@@ -131,10 +131,11 @@ alias ssd='hexo s --draft -p 8080'
 alias uc='rm -rf a.exe *.in *.out in* out* *.class && clean'
 alias db='mysql -u root -p'
 alias dbstart='/usr/bin/mysqld_safe --datadir="/var/lib/mysql" &'
-alias dbshutdown='/usr/bin/mysqladmin -u root shutdown'
+alias dbshutdown='/usr/bin/mysqladmin -u root -p shutdown'
 alias soft='control.exe appwiz.cpl'
 alias sudo='cygstart --action=runas'
 alias bc='bc -l'
+alias findext='_(){ find . -regex ".*\.\($1\)"; };_'
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 # sudo taskmgr
 # cyg-get
@@ -145,5 +146,13 @@ alias cpf='_(){ cat $1 | putclip; };_'
 alias mail='_(){ chrome https://mail.google.com/mail/u/$1/#inbox; };_'
 alias gcloud='gcloud.cmd'
 alias asmgcc='i686-w64-mingw32-gcc.exe'
+alias lh='_(){  w3m http://localhost:8080/$*; };_'
+alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
+alias rkt='_(){ if [ $# -eq 0 ];then rlwrap racket -l r5rs -i;else racket -l r5rs -e "`cat $*`";fi; };_'
+alias base='_(){ if [ $# -eq 0 ];then rlwrap racket -l racket/base -i;else racket -l racket/base -e "`cat $*`";fi; };_'
+#alias racket='rkt'
+alias Sleep='echo "shutdown /h" | cmd'
+#alias lh='_(){ if [ $# -eq 0 ];then w3m http://localhost:8080; else w3m http://localhost:8080/$* };_'
+
 POWERLINE_SCRIPT=/usr/share/powerline/bindings/bash/powerline.sh
 if [ -f $POWERLINE_SCRIPT ]; then source $POWERLINE_SCRIPT; fi
