@@ -11,7 +11,6 @@ syntax on
 hi comment ctermfg=blue
 "prefer ^
 "let comment color be blue. instead of dark blue
-
 "super TAB
 function InsertTabWrapper()
     let col = col('.') - 1
@@ -21,9 +20,7 @@ function InsertTabWrapper()
         return "\<c-p>"
     endif
 endfunction
-
 inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
-
 "my rc
 imap jk <ESC>
 let mapleader = "\<Space>"
@@ -38,5 +35,4 @@ nmap <Leader>; :
 nmap <Leader>= mcHmhLmlgg=G`h`l`c
 noremap H ^
 noremap L $
-
 set clipboard=unnamed
