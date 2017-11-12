@@ -30,7 +30,8 @@ else
 endif
 
 Bundle 'hotoo/pangu.vim'
-autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
+"autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
+autocmd BufWritePre *.markdown,*.md,*.text,*.wiki,*.cnx call PanGuSpacing()
 
 "Bundle 'ervandew/supertab'
 "set complete=.,w,b,u,t,i,w,

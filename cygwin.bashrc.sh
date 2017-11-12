@@ -14,7 +14,7 @@ export TERM=xterm
 export PS2="cont> "
 export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin:~/.local/bin
 export CPATH="$HOME/lib"
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 
 SAVEIFS=$IFS
 IFS=$(echo -en "\n\b")
@@ -91,7 +91,7 @@ alias sl='ls'
 alias vim='env TERM=xterm-color vim'
 alias e='emacs'
 alias irssi='env TERM=xterm-color irssi'
-alias ducks='du -ks * |sort -rn |head -20'
+alias ducks='du -ksm * |sort -rn |head -20'
 
 alias rm='rm -i'
 alias vb='vim ~/.bashrc'
