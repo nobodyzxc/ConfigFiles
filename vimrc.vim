@@ -1,5 +1,3 @@
-
-
 "normal setting
 set encoding=utf8
 "set ignorecase
@@ -14,9 +12,10 @@ set wildchar=<TAB>      " such as <TAB> in shell
 set smarttab
 
 set expandtab           " expand tabs to spaces.
-autocmd FileType scheme set tabstop=2 shiftwidth=2
 autocmd Filetype * if &ft!="scheme"|set tabstop=4 shiftwidth=4|endif
 autocmd Filetype * if &ft=="markdown"|set tabstop=3 shiftwidth=3|endif
+autocmd FileType scheme set tabstop=2 shiftwidth=2
+autocmd FileType haskell set tabstop=2 shiftwidth=2
 
 set nu
 set t_Co=8              " number of colors
@@ -79,7 +78,7 @@ nmap <Leader>= mcHmhLmlgg=G`h`l`c
 nmap <Leader>k <C-W><C-W>
 nmap <Leader>vc :source $MYVIMRC<CR>
 
-nmap <Leader>s :VimShellPop<CR>
+"nmap <Leader>s :VimShellPop<CR>
 nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
@@ -129,7 +128,7 @@ function! TogIntv()
             VimShellInteractive irb
             set syntax=ruby
         elseif &ft == "haskell"
-            VimShellInteractive /home/dici8/bin/haskell_bin/ghcii.sh
+            VimShellInteractive ghci
             set syntax=haskell
         elseif &ft == "javascript"
             VimShellInteractive /home/dici8/bin/node_bin/node.exe -i
@@ -200,12 +199,13 @@ function! s:ZoomToggle() abort
         let t:zoomed = 1
     endif
 endfunction
+
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <Leader>zm :ZoomToggle<CR>
 
 " line color
 let rngbeg=0
-autocmd FileType markdown,text let rngbeg=100
+"autocmd FileType markdown,text let rngbeg=100
 autocmd FileType c,cc,cpp,java,py,hs let rngbeg=80
 
 "^ single col
@@ -213,7 +213,7 @@ autocmd VimEnter * if rngbeg > 0 | let &colorcolumn=join(range(rngbeg,999),",")
 "^ pane
 
 " v Magenta
-autocmd FileType * highlight colorcolumn term=bold ctermfg=5 ctermbg=0 gui=bold
+autocmd FileType * highlight colorcolumn term=bold ctermfg=5 ctermbg=none gui=bold
 
 " other available theme
 "term=reverse ctermbg=147 ctermfg=3 guibg=#3a3a3a
@@ -227,7 +227,8 @@ autocmd FileType * highlight colorcolumn term=bold ctermfg=5 ctermbg=0 gui=bold
 set cursorline
 hi CursorLine ctermbg=none cterm=underline
 
-set clipboard=unnamed
+"set clipboard=unnamed
+:set clipboard=unnamedplus "in antergos
 
 filetype indent on "for php.vim & html.vim in .vimrc/indent
 

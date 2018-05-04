@@ -24,8 +24,12 @@ map <F12> :TagbarToggle<CR>
 if &diff
     "nothing
 else
-    autocmd VimEnter * nested :call tagbar#autoopen(0)
-    autocmd FileType c,cpp,python,hs,scheme nested :TagbarOpen
+
+    if winwidth('%') >= 124
+        autocmd VimEnter * nested :call tagbar#autoopen(0)
+        autocmd FileType c,cpp,python,hs,scheme nested :TagbarOpen
+    endif
+
     let g:tagbar_map_showproto='<space><space>'
 endif
 
