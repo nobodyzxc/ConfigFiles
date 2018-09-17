@@ -16,9 +16,11 @@ autocmd Filetype * if &ft!="scheme"|set tabstop=4 shiftwidth=4|endif
 autocmd Filetype * if &ft=="markdown"|set tabstop=3 shiftwidth=3|endif
 autocmd FileType scheme set tabstop=2 shiftwidth=2
 autocmd FileType haskell set tabstop=2 shiftwidth=2
+autocmd FileType javascript set tabstop=2 shiftwidth=2
 
 set nu
-set t_Co=8              " number of colors
+"set t_Co=8              " number of colors
+set t_Co=256
 set t_Sf=[1;3%p1%dm   " set foreground color
 set t_Sb=[1;4%p1%dm   " set background color
 set showcmd             " show command
@@ -82,7 +84,8 @@ nmap <Leader>vc :source $MYVIMRC<CR>
 nmap <Leader>l :call LoadIntv()<CR>
 nmap <Leader>i :call TogIntv()<CR><ESC><C-W><C-W>
 nmap <Leader>a :!echo --- <C-R><C-w> --- ;abbrev <C-R><C-W><CR>
-nmap <Leader>t :!echo --- <C-R><C-w> --- ;ici <C-R><C-W><CR>
+nmap <Leader>t :!echo --- <C-R><C-w> ---\\n ;sdcv -c <C-R><C-W><CR>
+nmap <Leader>s :!echo --- <C-R><C-w> ---\\n ;echo <C-R><C-W> \| festival --tts<CR>
 nmap <Leader>g :silent !chrome <C-R><C-A> 1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
 nmap <Leader>m :call DownAsMKD('<C-R><C-A>')<CR>
 nmap <F7> vdiv<ESC>
@@ -121,6 +124,9 @@ function! TogIntv()
             "VimShellInteractive python
             VimShellInteractive python3
             set syntax=python
+        elseif &ft == "prolog"
+            VimShellInteractive swipl @%
+            set syntax=prolog
         elseif g:cwd == "/cygdrive/d/workSpace/ew/ruby-koans/"
             VimShellPop
             "VimShellInteractive
@@ -149,6 +155,8 @@ function! LoadIntv()
         exe "w"
         if &ft == "scheme"
             call vimshell#interactive#send('(load "'.@%.'")')
+        elseif &ft == "prolog"
+            call vimshell#interactive#send('["'.expand('%:r').'"].')
         elseif &ft == "python"
             "call vimshell#interactive#send('execfile("'.@%.'")') "py2
             call vimshell#interactive#send('exec(open("'.@%.'").read())')
@@ -236,3 +244,4 @@ filetype indent on "for php.vim & html.vim in .vimrc/indent
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+

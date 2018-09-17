@@ -1,8 +1,7 @@
 [user]
-	name = nobodyzxc
-	email = dici86.chen@gmail.com
+    name  = nobodyzxc
+    email = dici86.chen@gmail.com
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     pm = push -u origin master
     st = status
-    

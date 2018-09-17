@@ -1,1 +1,4 @@
 :set prompt "ghci> "
+:set -XTypeApplications
+:set -XScopedTypeVariables
+-- :l /home/zxc/flolac/MiniPrelude.hs
