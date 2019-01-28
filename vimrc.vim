@@ -14,9 +14,11 @@ set smarttab
 set expandtab           " expand tabs to spaces.
 autocmd Filetype * if &ft!="scheme"|set tabstop=4 shiftwidth=4|endif
 autocmd Filetype * if &ft=="markdown"|set tabstop=3 shiftwidth=3|endif
+autocmd Filetype * if &ft=="html"|set tabstop=2 shiftwidth=2|endif
 autocmd FileType scheme set tabstop=2 shiftwidth=2
 autocmd FileType haskell set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
+autocmd FileType solidity set tabstop=2 shiftwidth=2
 
 set nu
 "set t_Co=8              " number of colors
@@ -91,6 +93,8 @@ nmap <Leader>m :call DownAsMKD('<C-R><C-A>')<CR>
 nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
 map <leader>zz :call ToggleFold()<cr>
+
+command! JsonBeautifier :%!python -m json.tool
 
 function! MyRe()
     let y = line(".")

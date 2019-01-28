@@ -9,7 +9,7 @@ shopt -s nocaseglob #no identity up or low case
 
 export TERM=xterm
 export PS2="cont> "
-export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin:~/.local/bin:/usr/lib/jvm/java-9-openjdk/bin
+export PATH=$PATH:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/bin:~/bin:~/.local/bin:/usr/lib/jvm/java-9-openjdk/bin:/home/zxc/.yarn/bin
 export CPATH="$HOME/lib"
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/lib
 
@@ -77,7 +77,7 @@ alias py='python3'
 alias py2='python2'
 alias chrome='google-chrome-stable'
 alias g='chrome>/dev/null 2>&1 &'
-alias cof='_(){ chrome "$1" 1>/dev/null 2>/dev/null & };_'
+alias cof='__(){ for f in $*; do chrome "$f" 2>/dev/null ; done };__'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$2; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 swpclean() {

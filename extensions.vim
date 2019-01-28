@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 " github repos below
 
 Bundle 'scrooloose/nerdtree'
-map <F11> :NERDTreeToggle<CR>
+map <F10> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 let NERDTreeQuitOnOpen=0
 
