@@ -2,7 +2,7 @@
 shopt -s no_empty_cmd_completion
 
 umask 002
-set nu
+#set nu # if set nu then ssdm cannot open desktop
 export USERNAME=`/usr/bin/whoami`
 
 shopt -s nocaseglob #no identity up or low case
@@ -75,7 +75,6 @@ alias tm='tmux'
 alias python='python3'
 alias py='python3'
 alias py2='python2'
-alias chrome='google-chrome-stable'
 alias g='chrome>/dev/null 2>&1 &'
 alias cof='__(){ for f in $*; do chrome "$f" 2>/dev/null ; done };__'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$2; };_'
