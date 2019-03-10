@@ -43,9 +43,10 @@ if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 #eval "$(thefuck --alias)"
 #if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
-#echo -ne "Setting AutoJump \t... "
-#[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-#if [ $? == 0 ];then echo "done"; else echo "failed"; fi
+echo -ne "Setting AutoJump \t... "
+AUTOJUMP_DIR=/etc/profile.d/autojump.bash
+[[ -s $AUTOJUMP_DIR ]] && source $AUTOJUMP_DIR
+if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
 echo -ne "Sourcing EnvVars\t... "
 if [ -f ~/bin/EnvVars.sh ];then
@@ -76,9 +77,11 @@ alias python='python3'
 alias py='python3'
 alias py2='python2'
 alias g='chrome>/dev/null 2>&1 &'
-alias cof='__(){ for f in $*; do chrome "$f" 2>/dev/null ; done };__'
+alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
 alias dbug='_(){ chrome https://www.udebug.com/UVa/$2; };_'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
+alias wifi='nmcli dev wifi'
+alias connect-wifi='__() { nmcli dev wifi connect $1 password $2; }; __'
 swpclean() {
     if [ -f .*.swp ];then
         for fn in `/bin/ls .*.swp`
@@ -105,3 +108,17 @@ if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
 alias ..='cd ..'
 #alias lh='_(){ if [ $# -eq 0 ];then w3m http://localhost:8080; else w3m http://localhost:8080/$* };_'
+
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus
+
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL=
+export TERM=xterm-termite
