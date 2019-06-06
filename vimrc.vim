@@ -19,6 +19,7 @@ autocmd FileType scheme set tabstop=2 shiftwidth=2
 autocmd FileType haskell set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType solidity set tabstop=2 shiftwidth=2
+autocmd FileType cpp set tabstop=2 shiftwidth=2
 
 set nu
 "set t_Co=8              " number of colors
@@ -93,6 +94,9 @@ nmap <Leader>m :call DownAsMKD('<C-R><C-A>')<CR>
 nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
 map <leader>zz :call ToggleFold()<cr>
+
+autocmd BufRead *.py nmap <leader>c :w<Esc>G:r!python3.6 %<CR>`.
+autocmd BufRead *.hs nmap <leader>c :w!<Esc>:!ghci %<CR>
 
 command! JsonBeautifier :%!python -m json.tool
 

@@ -50,7 +50,16 @@ function InsertTabWrapper()
     endif
 endfunction
 
+function SInsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-x>\<c-k>"
+    endif
+endfunction
 inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+inoremap <S-TAB> <C-R>=SInsertTabWrapper()<CR>
 
 
 Bundle 'asins/vim-dict'
@@ -122,6 +131,14 @@ Bundle 'vim-airline/vim-airline'
 set laststatus=2
 " enable powerline-fonts
 let g:airline_powerline_fonts = 1
+
+Bundle 'lervag/vimtex'
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
 
 "Plugin 'vim-airline/vim-airline-themes'
 
