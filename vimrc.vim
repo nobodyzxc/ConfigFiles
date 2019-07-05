@@ -91,6 +91,8 @@ nmap <Leader>t :!echo --- <C-R><C-w> ---\\n ;sdcv -c <C-R><C-W><CR>
 nmap <Leader>s :!echo --- <C-R><C-w> ---\\n ;echo <C-R><C-W> \| festival --tts<CR>
 nmap <Leader>g :silent !chrome <C-R><C-A> 1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
 nmap <Leader>m :call DownAsMKD('<C-R><C-A>')<CR>
+nmap <Leader>f :silent !pdflatex %<CR>
+nmap <F7> vdiv<ESC>
 nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
 map <leader>zz :call ToggleFold()<cr>
@@ -244,7 +246,7 @@ set cursorline
 hi CursorLine ctermbg=none cterm=underline
 
 "set clipboard=unnamed
-:set clipboard=unnamedplus "in antergos
+set clipboard=unnamedplus "in antergos
 
 filetype indent on "for php.vim & html.vim in .vimrc/indent
 
