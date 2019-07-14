@@ -105,74 +105,6 @@ export LC_ALL=
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-sf="~/public_html/share"
-cherry="s10410@cherry.cs.nccu.edu.tw"
-share="${cherry}:$sf"
-alias share='__(){ if [ $# -gt 1 ];then scp $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
-alias ls='/bin/ls -NF --color=auto'
-alias sl='ls'
-alias vim='env TERM=xterm-color vim'
-alias e='emacs'
-alias irssi='env TERM=xterm-color irssi'
-alias ducks='du -ksm * $* |sort -rn |head -20'
-
-alias hang='__(){ nohup $* >/dev/null 2>&1 &;};__'
-alias sz='source ~/.zshrc'
-
-alias fb='feh --randomize --bg-fill $HOME/Pictures/WallPapers/*/*.jpg'
-alias rm='rm -i'
-alias vb='vim ~/.bashrc'
-# 'gf' in vim to open a filename
-alias vc='vim ~/.vimrc'
-alias sb='source ~/.bashrc'
-alias mcd='__(){ mkdir -m 715 $1 ; cd $1 ; } ; __'
-alias l='clear'
-alias ll='ls -la'
-alias la='ls -a'
-alias tm='tmux'
-#alias python='python3'
-#alias python='python3.6'
-alias py='python'
-alias py2='python2'
-alias g='chrome>/dev/null 2>&1 &'
-alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
-alias dbug='_(){ chrome https://www.udebug.com/UVa/$2; };_'
-alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
-alias wifi-list='nmcli dev wifi'
-alias wifi-connect='__() { if [ $# -gt 1 ];then nmcli dev wifi connect $1 password $2;else nmcli dev wifi connect $1;fi }; __'
-swpclean() {
-    if [ -f .*.swp ];then
-        for fn in `/bin/ls .*.swp`
-        do /bin/rm -i $fn
-        done
-    fi
-}
-alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
-alias exp='_(){ explorer `cygpath -w "$PWD"`; };_' #\\$1
-alias outt='rm -f /tmp/totalExit && exit'
-alias open='__(){ nohup xdg-open $* &> /dev/null &; };__'
-alias pm='ps -efu `whoami`'
-alias g++='g++ -Wall'
-alias gcc='gcc -Wall'
-alias sss='__(){ hexo clean && hexo g && hexo s -p 8080; };__'
-alias ddd='__(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -i && git add -u && git commit -m "backup" && git pm; };__'
-alias ssd='hexo s --draft -p 8080'
-alias bc='bc -l'
-alias findext='_(){ find . -regex ".*\.\($1\)"; };_'
-alias vz='vim ~/.zshrc'
-alias b='feh --randomize --bg-center $HOME/Pictures/WallPapers/*/*.jpg'
-# sudo taskmgr
-# cyg-get
-alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
-alias def='sdcv'
-alias volup='pactl set-sink-volume 0 +5%'
-alias voldown='pactl set-sink-volume 0 -5%'
-alias voltog='pactl set-sink-mute 0 toggle'
-alias opengl='__(){ g++ $1 -I GLTools/include/GL -I GLTools/include/ -I GLTools/src/ -I /usr/include -I /usr/local/include -I /usr/include -L /usr/X11R6/lib -L /usr/X11R6/lib64 -L /usr/local/lib -lX11 -lglut -lGL -lGLU -lm -o ${1%.*} };__'
-alias telegram-cli='telegram-cli --enable-msg-id'
-alias psmem='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head'
-alias pscpu='ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%cpu | head'
-alias wget='wget --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0" -c'
 
 
 set | /usr/bin/grep "RUN_TMUX" > /dev/null
@@ -196,10 +128,8 @@ export PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/pkgconfig
 PATH=$PATH:~/bin:~/.yarn/bin
 export CFLAGS=-fPIC
 export CXXFLAGS=-fPIC
-alias asciiplay='CACA_DRIVER=ncurses;mplayer -really-quiet -vo caca'
 bindkey '^ ' autosuggest-accept
 
-alias anash='source ~/bin/ana.sh'
 ### added by Anaconda3 installer
 ## export PATH="/usr/local/anaconda/bin:$PATH"  # commented out by conda initialize
 #
@@ -223,3 +153,4 @@ alias cof='google-chrome-stable'
 PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
 
+source ~/.alias.sh

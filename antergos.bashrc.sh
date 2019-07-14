@@ -54,61 +54,6 @@ if [ -f ~/bin/EnvVars.sh ];then
 fi
 if [ $? == 0 ];then echo "done"; else echo "failed"; fi
 
-echo -ne "Aliasing \t\t... "
-# Set alias forms
-alias ls='/bin/ls -NF --color=auto'
-alias sl='ls'
-alias vim='env TERM=xterm-color vim'
-alias e='emacs'
-alias irssi='env TERM=xterm-color irssi'
-alias ducks='du -ksm * |sort -rn |head -20'
-
-alias rm='rm -i'
-alias vb='vim ~/.bashrc'
-# 'gf' in vim to open a filename
-alias vc='vim ~/.vimrc'
-alias sb='source ~/.bashrc'
-alias mcd='_(){ mkdir -m 715 $1 ; cd $1 ; } ; _'
-alias l='clear'
-alias ll='ls -la'
-alias la='ls -a'
-alias tm='tmux'
-alias python='python3'
-alias py='python3'
-alias py2='python2'
-alias g='chrome>/dev/null 2>&1 &'
-alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
-alias dbug='_(){ chrome https://www.udebug.com/UVa/$2; };_'
-alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
-alias wifi='nmcli dev wifi'
-alias connect-wifi='__() { nmcli dev wifi connect $1 password $2; }; __'
-swpclean() {
-    if [ -f .*.swp ];then
-        for fn in `/bin/ls .*.swp`
-        do
-            /bin/rm -i $fn
-        done
-    fi
-}
-alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
-alias exp='_(){ explorer `cygpath -w "$PWD"`; };_' #\\$1
-alias outt='rm -f /etc/totalExit && exit'
-alias open='xdg-open'
-alias pm='ps -efu `whoami`'
-alias g++='g++ -Wall'
-alias gcc='gcc -Wall'
-alias sss='_(){ hexo clean && hexo g && hexo s -p 8080; };_'
-alias ddd='_(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -i && git add -u && git commit -m "backup" && git pm; };_'
-alias ssd='hexo s --draft -p 8080'
-alias bc='bc -l'
-alias findext='_(){ find . -regex ".*\.\($1\)"; };_'
-if [ $? == 0 ];then echo "done"; else echo "failed"; fi
-# sudo taskmgr
-# cyg-get
-alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
-alias ..='cd ..'
-#alias lh='_(){ if [ $# -eq 0 ];then w3m http://localhost:8080; else w3m http://localhost:8080/$* };_'
-
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus
@@ -138,3 +83,4 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+source ~/.alias.sh
