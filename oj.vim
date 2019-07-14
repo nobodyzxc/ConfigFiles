@@ -35,4 +35,5 @@ nmap <Leader>; :
 nmap <Leader>= mcHmhLmlgg=G`h`l`c
 noremap H ^
 noremap L $
-set clipboard=unnamed
+set clipboard=unnamedplus
+set hlsearch

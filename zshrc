@@ -2,14 +2,14 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/zxc/.oh-my-zsh"
+#export ZSH="/home/zxc/.oh-my-zsh"
+export ZSH=/usr/share/oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
-ZSH_THEME="lambda"
+ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -114,11 +114,12 @@ alias sl='ls'
 alias vim='env TERM=xterm-color vim'
 alias e='emacs'
 alias irssi='env TERM=xterm-color irssi'
-alias ducks='du -ksm * |sort -rn |head -20'
+alias ducks='du -ksm * $* |sort -rn |head -20'
 
 alias hang='__(){ nohup $* >/dev/null 2>&1 &;};__'
 alias sz='source ~/.zshrc'
 
+alias fb='feh --randomize --bg-fill $HOME/Pictures/WallPapers/*/*.jpg'
 alias rm='rm -i'
 alias vb='vim ~/.bashrc'
 # 'gf' in vim to open a filename
@@ -130,7 +131,7 @@ alias ll='ls -la'
 alias la='ls -a'
 alias tm='tmux'
 #alias python='python3'
-alias python='python3.6'
+#alias python='python3.6'
 alias py='python'
 alias py2='python2'
 alias g='chrome>/dev/null 2>&1 &'
@@ -186,6 +187,7 @@ if [ $? = 1 ];then
     RUN_TMUX=0
     clear
 fi
+
 PATH=$PATH:/home/zxc/.local/bin
 #eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
@@ -215,6 +217,8 @@ alias anash='source ~/bin/ana.sh'
 #fi
 #unset __conda_setup
 ## <<< conda initialize <<<
+
+alias cof='google-chrome-stable'
 
 PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
