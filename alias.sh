@@ -59,6 +59,41 @@ alias wget='wget --user-agent="User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS 
 
 alias anash='source ~/bin/ana.sh'
 alias asciiplay='CACA_DRIVER=ncurses;mplayer -really-quiet -vo caca'
+alias disk='df -h --total'
+
+# compress series
+alias dotar='tar cvf' # ext dir
+alias untar='tar xvf'
+alias dogz='gzip' # ext
+alias ungz='gunzip'
+alias dotargz='tar zcvf' # ext dir
+alias untargz='tar zxvf'
+alias dobz='bzip2 -d' # ext
+alias unbz='bunzip2'
+alias untarbz='taf jxvf'
+alias dobz2='bzip2 -z'
+alias unbz2='bzip2 -d'
+alias dotarbz2='tar jcvf' # ext dir
+alias untarbz2='tar jxvf'
+alias doxz='xz -z' # ext
+alias unxz='xz -d'
+alias dotarxz='tar Jcvf' # ext dir
+alias untarxz='tar Jxvf'
+alias doz='compress' # ext
+alias unz='uncompress'
+alias dotarz='tar Zcvf' # ext dir
+alias untarz='tar Zxvf'
+alias dotgz='tar zcvf' # ext dir
+alias untgz='tar zxvf'
+alias dotartgz='tar zcvf' # ext dir
+alias untartgz='tar zxvf'
+alias do7z='7z a' #-pPassword # ext
+alias un7z='7z x'
+alias dozip='zip -r' # ext dir
+alias dorar='rar a' # ext dir
+alias unrar='rar x'
+alias dolha='lha -a' # ext file
+alias unlha='lha -e'
 
 swpclean() {
     if [ -f .*.swp ];then

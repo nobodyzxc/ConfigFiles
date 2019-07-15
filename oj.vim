@@ -24,6 +24,7 @@ inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
 "my rc
 imap jk <ESC>
 let mapleader = "\<Space>"
+nmap <Leader>r :<C-P><CR>
 nmap <Leader>x :x<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
