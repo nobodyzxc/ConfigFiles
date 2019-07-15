@@ -6,3 +6,7 @@
     pm = push -u origin master
     st = status
     relast = git commit --amend
+    kill = "!f() { git filter-branch --force --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
+
+  
+            

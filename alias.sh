@@ -61,6 +61,9 @@ alias anash='source ~/bin/ana.sh'
 alias asciiplay='CACA_DRIVER=ncurses;mplayer -really-quiet -vo caca'
 alias disk='df -h --total'
 
+alias t2s='__(){ for f in $*;do opencc -c t2s.json -i $f -o simple_$f;done; };__'
+alias s2t='__(){ for f in $*;do opencc -c s2t.json -i $f -o tranditional_$f;done; };__'
+
 # compress series
 alias dotar='tar cvf' # ext dir
 alias untar='tar xvf'
