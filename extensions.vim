@@ -133,15 +133,20 @@ set laststatus=2
 let g:airline_powerline_fonts = 1
 
 Bundle 'lervag/vimtex'
+"let g:tex_flavor='pdflatex'
 let g:tex_flavor='pdflatex'
+"let g:tex_flavor='latex'
+"let g:Tex_CompileRule_dvi = 'latex -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode -file-line-error-style $*'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=1
 set conceallevel=1
 let g:tex_conceal='abdmg'
 let g:vimtex_syntax_enabled = 0
 "let g:vimtex_latexmk_enabled = 1
+"let g:vimtex_latexmk_options = '-halt-on-error'
 "let g:vimtex_latexmk_options = '-pdf -verbose -file-line-error -synctex=1'
-autocmd BufWritePost *.tex silent! execute "!pdflatex % >/dev/null 2>&1" | redraw!
+autocmd BufWritePost *.tex silent! execute "!pdflatex -halt-on-error % >/dev/null 2>&1" | redraw!
 
 "Plugin 'vim-airline/vim-airline-themes'
 

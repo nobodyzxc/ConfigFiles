@@ -20,6 +20,7 @@ autocmd FileType haskell set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType solidity set tabstop=2 shiftwidth=2
 autocmd FileType cpp set tabstop=2 shiftwidth=2
+autocmd FileType tex set tabstop=2 shiftwidth=2
 
 set nu
 "set t_Co=8              " number of colors
