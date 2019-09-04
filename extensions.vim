@@ -19,6 +19,23 @@ let NERDTreeQuitOnOpen=0
 "Bundle 'taglist.vim'
 ""cursor and python not open
 Bundle 'majutsushi/tagbar'
+
+" Add support for markdown files in tagbar.
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/.vim/util/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
 "instead taglist
 map <F12> :TagbarToggle<CR>
 if &diff
@@ -27,7 +44,7 @@ else
 
     if winwidth('%') >= 124
         autocmd VimEnter * nested :call tagbar#autoopen(0)
-        autocmd FileType c,cpp,python,hs,scheme nested :TagbarOpen
+        autocmd FileType c,cpp,python,hs,scheme,markdown nested :TagbarOpen
     endif
 
     let g:tagbar_map_showproto='<space><space>'
@@ -38,32 +55,58 @@ Bundle 'hotoo/pangu.vim'
 "autocmd BufWritePre *.markdown,*.md,*.text,*.wiki,*.cnx call PanGuSpacing()
 nnoremap <Leader>p :Pangu<Cr>
 
-"Bundle 'ervandew/supertab'
+
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+
+Bundle 'ervandew/supertab'
 "set complete=.,w,b,u,t,i,w,
-"smart mapping for tab completion
-function InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
+"let g:SuperTabDefaultCompletionType = 'context'
+"autocmd FileType *
+"  \ if &omnifunc != '' |
+"  \   call SuperTabChain(&omnifunc, "<c-p>") |
+"  \ endif
 
-function SInsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-x>\<c-k>"
-    endif
-endfunction
-inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
-inoremap <S-TAB> <C-R>=SInsertTabWrapper()<CR>
 
+""smart mapping for tab completion
+"function InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-p>"
+"    endif
+"endfunction
+"
+"function SInsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<tab>"
+"    else
+"        return "\<c-x>\<c-k>"
+"    endif
+"endfunction
+"inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
+"inoremap <S-TAB> <C-R>=SInsertTabWrapper()<CR>
+
+
+Bundle 'artur-shaik/vim-javacomplete2'
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+autocmd FileType java let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 
 Bundle 'asins/vim-dict'
 "autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
+
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_no_default_key_mappings = 1
+let g:vim_markdown_toc_autofit = 1
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_new_list_item_indent = 2
+let g:vim_markdown_conceal = 0
+"let g:vim_markdown_json_frontmatter = 1 " need vim-json
 
 "Bundle 'tpope/vim-surround.vim'
 Bundle 'shougo/vimshell.vim'
@@ -149,10 +192,6 @@ let g:vimtex_syntax_enabled = 0
 autocmd BufWritePost *.tex silent! execute "!pdflatex -halt-on-error % >/dev/null 2>&1" | redraw!
 
 "Plugin 'vim-airline/vim-airline-themes'
-
-"Bundle 'artur-shaik/vim-javacomplete2'
-"setlocal omnifunc=javacomplete#Complete
-"inoremap <buffer> . .<C-X><C-O><C-P>
 
 "Bundle 'html5.vim'
 "Bundle 'JavaScript-syntax'
