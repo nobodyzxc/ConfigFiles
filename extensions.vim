@@ -106,6 +106,7 @@ Bundle 'asins/vim-dict'
 ""let g:vim_markdown_json_frontmatter = 1 " need vim-json
 "let g:vim_markdown_new_list_item_indent = 2
 
+
 "Bundle 'tpope/vim-surround.vim'
 Bundle 'shougo/vimshell.vim'
 Bundle 'shougo/vimproc.vim'
