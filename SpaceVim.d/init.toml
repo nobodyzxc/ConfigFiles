@@ -24,8 +24,8 @@
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
     complete_method = "coc"
-    filemanager = "nerdtree"
     filetree_direction = "left"
+    filemanager = "nerdtree"
 
 # Enable autocomplete layer
 [[layers]]

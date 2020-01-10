@@ -59,7 +59,7 @@ ZSH_THEME="lambda"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 #
-ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
+#ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*

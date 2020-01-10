@@ -13,3 +13,10 @@ else
     endif
     let g:tagbar_map_showproto='<space><space>'
 endif
+
+" Key bindings for vim-lsp.
+nn <silent> <Leader>ld :LspDefinition<cr>
+nn <silent> <Leader>lr :LspReferences<cr>
+nn <silent> <Leader>lw :LspWorkspaceSymbol<cr>
+nn <silent> <Leader>lD :LspDocumentSymbol<cr>
+nn <silent> <Leader>lR :LspRename<cr>

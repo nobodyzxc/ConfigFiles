@@ -40,8 +40,8 @@ nnoremap <Leader>k  <C-W><C-W>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>x :x<CR>
-nmap <Leader>n :n<CR>
-nmap <Leader>p :prev<CR>
+nmap <Leader>n :bnext<CR>
+nmap <Leader>p :bprev<CR>
 nmap <Leader>jq :q!<CR>
 nmap <Leader>/ :noh<CR>
 nmap <Leader>v :vsplit<CR>
