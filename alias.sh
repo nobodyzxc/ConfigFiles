@@ -1,12 +1,15 @@
 sf="~/public_html/share"
 cherry="s10410@cherry.cs.nccu.edu.tw"
 share="${cherry}:$sf"
+alias ws='wc -m'
 alias g='chromium>/dev/null 2>&1 &'
 
-alias share='__(){ if [ $# -gt 1 ];then scp $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
+alias share='__(){ if [ $# -gt 1 ];then scp -r $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp -r $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
+alias fetch='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
+alias vi='vim'
 alias emacs='emacs -nw'
 alias e='emacs'
 alias irssi='env TERM=xterm-color irssi'
@@ -73,7 +76,7 @@ alias dotargz='tar zcvf' # ext dir
 alias untargz='tar zxvf'
 alias dobz='bzip2 -d' # ext
 alias unbz='bunzip2'
-alias untarbz='taf jxvf'
+alias untarbz='tar jxvf'
 alias dobz2='bzip2 -z'
 alias unbz2='bzip2 -d'
 alias dotarbz2='tar jcvf' # ext dir
@@ -118,3 +121,7 @@ v2() {
   done
   curl "v2en.co/$str"
 }
+
+#git filter-branch --force --index-filter \
+#  "git rm --cached --ignore-unmatch hw2/nobodyzxc/Q1/O_/" \
+#  --prune-empty --tag-name-filter cat -- --all

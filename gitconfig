@@ -1,6 +1,6 @@
 [user]
     name  = nobodyzxc
-    email = dici86.chen@gmail.com
+    email = nobodyzxc.tw@gmail.com
 [alias]
     lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
     pm = push -u origin master
@@ -8,5 +8,6 @@
     relast = git commit --amend
     kill = "!f() { git filter-branch --force --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
 
-  
-            
+#git filter-branch --force --index-filter \
+#  "git rm --cached --ignore-unmatch [file]" \
+#  --prune-empty --tag-name-filter cat -- --all
