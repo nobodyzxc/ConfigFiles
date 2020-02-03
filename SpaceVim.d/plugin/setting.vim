@@ -20,3 +20,4 @@ nn <silent> <Leader>lr :LspReferences<cr>
 nn <silent> <Leader>lw :LspWorkspaceSymbol<cr>
 nn <silent> <Leader>lD :LspDocumentSymbol<cr>
 nn <silent> <Leader>lR :LspRename<cr>
+let g:lsp_diagnostics_echo_cursor = 1
