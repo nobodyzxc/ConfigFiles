@@ -4,6 +4,7 @@ share="${cherry}:$sf"
 alias g='chromium>/dev/null 2>&1 &'
 
 alias share='__(){ if [ $# -gt 1 ];then scp $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
+alias erahs='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
@@ -27,7 +28,7 @@ alias tm='tmux'
 alias python='python3.6'
 alias py='python'
 alias py2='python2'
-alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
+alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 alias wifi-list='nmcli dev wifi'
@@ -46,6 +47,7 @@ alias bc='bc -l'
 alias findext='__(){ find . -regex ".*\.\($1\)"; };__'
 alias vz='vim ~/.zshrc'
 alias b='feh --randomize --bg-center $HOME/Pictures/WallPapers/*/*.jpg'
+alias bg='__(){feh --randomize --bg-center $HOME/Pictures/WallPapers/$1/*.jpg;};__'
 alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
 alias def='sdcv'
 alias volup='pactl set-sink-volume 0 +5%'
@@ -73,7 +75,7 @@ alias dotargz='tar zcvf' # ext dir
 alias untargz='tar zxvf'
 alias dobz='bzip2 -d' # ext
 alias unbz='bunzip2'
-alias untarbz='taf jxvf'
+alias untarbz='tar jxvf'
 alias dobz2='bzip2 -z'
 alias unbz2='bzip2 -d'
 alias dotarbz2='tar jcvf' # ext dir
@@ -97,6 +99,7 @@ alias dorar='rar a' # ext dir
 alias unrar='rar x'
 alias dolha='lha -a' # ext file
 alias unlha='lha -e'
+alias vpn='sudo openfortivpn 140.113.235.174:443 -u zxchen'
 
 swpclean() {
     if [ -f .*.swp ];then
@@ -118,3 +121,20 @@ v2() {
   done
   curl "v2en.co/$str"
 }
+if test "$HOST" = "plas" ;then
+alias lock='~/.i3/i3lock-multimonitor/lock'
+#alias mv='rsync --info=progress2'
+#alias cp="rsync -avz"
+fi
+alias pf='perf record --call-graph dwarf'
+alias tosticker='__(){convert $1 -resize 512x512 512_${1%.*}.png;};__'
+alias ghci='stack exec -- ghci'
+alias poweroff='echo "really?"'
+alias shutdown='echo "really?"'
+
+export PATH="/home/$USER/x-tools/riscv64-unknown-linux-gnu/bin/:$PATH"
+export LD_LIBRARY_PATH="$HOME/rabbit/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/$USER/x-tools/riscv64-unknown-linux-gnu/riscv64-unknown-linux-gnu/sysroot/lib:/home/$USER/x-tools/riscv64-unknown-linux-gnu/riscv64-unknown-linux-gnu/sysroot/lib64/lp64"
+export PATH="$HOME/rabbit/bin:$PATH"
+
+alias bvpn='autossh -M 20000 -i ~/.ssh/id_rsa -NfR 80:localhost:80 dorm'

@@ -65,8 +65,8 @@ ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-#plugins=(git zsh-autosuggestions)
+#plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,7 +122,10 @@ fi
 
 PATH=$PATH:/home/zxc/.local/bin
 #eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/usr/local/include
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/local/include
+
 export PKG_CONFIG=/usr/bin/pkg-config
 export PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/pkgconfig
 PATH=$PATH:~/bin:~/.yarn/bin
