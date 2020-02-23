@@ -57,3 +57,4 @@ set clipboard=unnamedplus
 set hlsearch
 autocmd BufRead,BufNewFile *.md setlocal spell
 set wrap
+set mouse=

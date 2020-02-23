@@ -1,6 +1,7 @@
 sf="~/public_html/share"
 cherry="s10410@cherry.cs.nccu.edu.tw"
 share="${cherry}:$sf"
+alias report='xradnr --output eDPI --mode 1366x768'
 alias ws='wc -m'
 alias g='chromium>/dev/null 2>&1 &'
 
@@ -30,7 +31,7 @@ alias tm='tmux'
 alias python='python3.6'
 alias py='python'
 alias py2='python2'
-alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
+alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 alias wifi-list='nmcli dev wifi'

@@ -26,6 +26,7 @@
     complete_method = "coc"
     filetree_direction = "left"
     filemanager = "nerdtree"
+    auto_disable_touchpad = false
 
 # Enable autocomplete layer
 [[layers]]
