@@ -110,10 +110,10 @@ export LC_ALL=
 set | /usr/bin/grep "RUN_TMUX" > /dev/null
 if [ $? = 1 ];then
     export RUN_TMUX=1
-    touch /tmp/totalExit
+    touch /tmp/`whoami`_totalExit
     tmux -u
-    if [ -f /tmp/totalExit ];then
-        rm -f /tmp/totalExit
+    if [ -f /tmp/`whoami`_totalExit ];then
+        rm -f /tmp/`whoami`_totalExit
         exit
     fi
     RUN_TMUX=0
@@ -157,3 +157,8 @@ PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
 
 source ~/.alias.sh
+
+eval $(thefuck --alias)
+
+# opam configuration
+test -r /home/zxc/.opam/opam-init/init.zsh && . /home/zxc/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

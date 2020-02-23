@@ -45,10 +45,10 @@ if [ $? = 1 ];then
     #fi
     #sleep 1
     #    if [ $USE_TMUX = "1" ];then 
-    touch /etc/totalExit
+    touch /etc/`whoami`_totalExit
     tmux
-    if [ -f /etc/totalExit ];then
-        rm -f /etc/totalExit
+    if [ -f /etc/`whoami`_totalExit ];then
+        rm -f /etc/`whoami`_totalExit
         exit
     fi
     RUN_TMUX=0

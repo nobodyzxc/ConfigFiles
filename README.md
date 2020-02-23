@@ -1,54 +1,19 @@
 # My configuration files
 
-```sh
-cp cygwin.bashrc.sh   /etc/bash.bashrc
-cp antergos.bashrc.sh ~/.bashrc
-cp ghci               ~/.ghci
-cp oj.vim             ~/.vimrc
-cp tmux.conf          ~/.tmux.conf
-cp i3.conf            ~/.config/i3/config
-cp i3status-rs.toml   ~/.config/i3/config.toml
-cp minttyrc           ~/.minttyrc
-cp screenrc           ~/.screenrc
-cp terminator.config  ~/.config/terminator/config
-cp termite.config     ~/.config/termite/config
-cp vimrc              ~/.vimrc
-cp etc.bash.bashrc    /etc/bash.bashrc
-cp gitconfig          ~/.gitconfig
-cp inputrc            ~/.inputrc
-cp vimshrc.sh         ~/.vimshrc
-```
+Use `deploy.sh` to deploy the config files.
 
-# local location
-- README.md
-- bashrc
-  - cygwin (option - C.utf-8)
-    * etc/bash.bashrc
-    * ~/.bashrc
-- ~/.ghci
-- ~/.gitconfig
-- ~/.inputrc
-- ~/.minttyrc
-- ~/.oj.vim
-- ~/.screenrc
-- ~/.tmux.conf
-- ~/.vimrc
-- ~/.vimshrc(vim-shell - a vim extension)
+vimrc:
 
-# github files
-```
-.
-├── README.md
-├── etc.bash.bashrc
-├── cygwin.bashrc.sh
-├── ghci
-├── gitconfig
-├── inputrc
-├── minttyrc
-├── oj.vim
-├── screenrc
-├── tmux.conf
-├── vimrc.vim
-├── extensions.vim
-└── vimshrc.sh
-```
+- unrar the [vim dir](https://drive.google.com/open?id=1NTW-V3slBfCOYYUkFjE4EUcHjLNJSd5m) to `~`
+
+
+i3 config:
+
+- pkg used:
+   ```
+   tmux terminte terminator feh xcompmgr xfce4-power-manager xrandr network-manager-applet thunar dbus scrot imagemagick rofi
+   ```
+
+- unrar the [wallpapers](https://drive.google.com/open?id=1I6532RFJzPHjk7s3XSb6F-CYB8aX9eR7) to `~/Pictures/`
+
+

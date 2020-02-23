@@ -120,7 +120,7 @@ swpclean() {
 alias clean='_(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};_'
 alias g='chrome.exe 2>/dev/null 1>/dev/null &'
 alias exp='_(){ explorer `cygpath -w "$PWD"`; };_' #\\$1
-alias outt='rm -f /etc/totalExit && exit'
+alias outt='rm -f /etc/`whoami`_totalExit && exit'
 alias pm='ps -efu `whoami`'
 alias open='cygstart'
 alias g++='g++ -Wall'

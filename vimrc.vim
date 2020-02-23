@@ -20,6 +20,7 @@ autocmd FileType haskell set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType solidity set tabstop=2 shiftwidth=2
 autocmd FileType cpp set tabstop=2 shiftwidth=2
+autocmd FileType c set tabstop=2 shiftwidth=2
 autocmd FileType tex set tabstop=2 shiftwidth=2
 
 set nu
@@ -40,7 +41,7 @@ set background=dark
 
 autocmd FileType make setlocal noexpandtab
 
-setlocal omnifunc=syntaxcomplete#Complete
+"setlocal omnifunc=syntaxcomplete#Complete
 set cot+=menuone
 
 
@@ -123,7 +124,8 @@ function! TogIntv()
             if b:ext == "ss"
                 "VimShellInteractive plt-r5rs.exe
                 "VimShellInteractive racket3m.exe
-                VimShellInteractive racket.exe -i
+                "VimShellInteractive racket.exe -i
+                VimShellInteractive petite
             elseif b:ext == "scm"
                 VimShellInteractive racket.exe -l r5rs -i
             else
@@ -256,3 +258,5 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set ignorecase
+set infercase

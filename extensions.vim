@@ -29,7 +29,7 @@ let g:tagbar_type_markdown = {
         \ 's:sections',
         \ 'i:images'
     \ ],
-    \ 'sro' : '|',
+    \ 'sro' : '<|||>',
     \ 'kind2scope' : {
         \ 's' : 'section',
     \ },
@@ -61,12 +61,11 @@ set omnifunc=syntaxcomplete#Complete
 
 Bundle 'ervandew/supertab'
 "set complete=.,w,b,u,t,i,w,
-"let g:SuperTabDefaultCompletionType = 'context'
-"autocmd FileType *
-"  \ if &omnifunc != '' |
-"  \   call SuperTabChain(&omnifunc, "<c-p>") |
-"  \ endif
-
+let g:SuperTabDefaultCompletionType = 'context'
+autocmd FileType *
+  \ if &omnifunc != '' |
+  \   call SuperTabChain(&omnifunc, "<c-p>") |
+  \ endif
 
 ""smart mapping for tab completion
 "function InsertTabWrapper()
@@ -92,21 +91,21 @@ Bundle 'ervandew/supertab'
 
 Bundle 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
+let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 
 Bundle 'asins/vim-dict'
 "autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
 
-Bundle 'godlygeek/tabular'
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_no_default_key_mappings = 1
-let g:vim_markdown_toc_autofit = 1
-let g:vim_markdown_math = 1
-let g:vim_markdown_frontmatter = 1
-let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_conceal = 0
-"let g:vim_markdown_json_frontmatter = 1 " need vim-json
+"Bundle 'godlygeek/tabular'
+"Bundle 'plasticboy/vim-markdown'
+"let g:vim_markdown_folding_disabled = 1
+"let g:vim_markdown_no_default_key_mappings = 1
+"let g:vim_markdown_toc_autofit = 1
+"let g:vim_markdown_math = 1
+"let g:vim_markdown_frontmatter = 1
+""let g:vim_markdown_json_frontmatter = 1 " need vim-json
+"let g:vim_markdown_new_list_item_indent = 2
+
 
 "Bundle 'tpope/vim-surround.vim'
 Bundle 'shougo/vimshell.vim'

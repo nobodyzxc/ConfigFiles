@@ -28,7 +28,7 @@ alias ppt='_(){ ksolaunch.exe  /wpp /w /fromksolaunch `cygpath -w "$PWD"`\\$1; }
 alias word='_(){ ksolaunch.exe  /w /wps /fromksolaunch `cygpath -w "$PWD"`\\$1; };_'
 alias exp='_(){ explorer `cygpath -w "$PWD"`\\$1; };_'
 alias pp='_(){ PS1="$1"; };_'
-alias outt='rm -f /etc/totalExit && exit'
+alias outt='rm -f /etc/`whoami`_totalExit && exit'
 alias xlat='chrome https://translate.google.com.tw/?hl=zh-TW&authuser=0'
 alias ghci='rlwrap ~/bin/haskell_bin/ghcii.sh'
 alias mgw-c='~/bin/MinGW64/gcc.exe -static -lopengl32 -lgdi32 -lglu32 -mwindows'

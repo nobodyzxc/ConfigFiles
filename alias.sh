@@ -1,13 +1,16 @@
 sf="~/public_html/share"
 cherry="s10410@cherry.cs.nccu.edu.tw"
 share="${cherry}:$sf"
+alias ws='wc -m'
 alias g='chromium>/dev/null 2>&1 &'
 
-alias share='__(){ if [ $# -gt 1 ];then scp $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
-alias erahs='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
+alias share='__(){ if [ $# -gt 1 ];then scp -r $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp -r $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
+alias fetch='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
+
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
+alias vi='vim'
 alias emacs='emacs -nw'
 alias e='emacs'
 alias irssi='env TERM=xterm-color irssi'
@@ -35,7 +38,7 @@ alias wifi-list='nmcli dev wifi'
 alias wifi-connect='__() { if [ $# -gt 1 ];then nmcli dev wifi connect $1 password $2;else nmcli dev wifi connect $1;fi }; __'
 alias clean='__(){ /bin/rm -f *.stackdump *.o *.core 2>/dev/null ; swpclean;};__'
 alias exp='__(){ explorer `cygpath -w "$PWD"`; };__' #\\$1
-alias outt='rm -f /tmp/totalExit && exit'
+alias outt='rm -f /tmp/`whoami`_totalExit && exit'
 alias open='__(){ nohup xdg-open $* &> /dev/null &; };__'
 alias pm='ps -efu `whoami`'
 alias g++='g++ -Wall'
@@ -138,3 +141,18 @@ export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/$USER/x-tools/riscv64-unknown-lin
 export PATH="$HOME/rabbit/bin:$PATH"
 
 alias bvpn='autossh -M 20000 -i ~/.ssh/id_rsa -NfR 80:localhost:80 dorm'
+
+#"
+#cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+#ln -s Debug/compile_commands.json .
+#"
+alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
+
+eval $(opam env)
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
