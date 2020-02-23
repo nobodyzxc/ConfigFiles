@@ -19,7 +19,9 @@ autocmd FileType scheme set tabstop=2 shiftwidth=2
 autocmd FileType haskell set tabstop=2 shiftwidth=2
 autocmd FileType javascript set tabstop=2 shiftwidth=2
 autocmd FileType solidity set tabstop=2 shiftwidth=2
+autocmd FileType c set tabstop=2 shiftwidth=2
 autocmd FileType cpp set tabstop=2 shiftwidth=2
+autocmd FileType opencl set tabstop=2 shiftwidth=2
 autocmd FileType tex set tabstop=2 shiftwidth=2
 
 set nu
@@ -246,8 +248,8 @@ autocmd FileType * highlight colorcolumn term=bold ctermfg=5 ctermbg=none gui=bo
 set cursorline
 hi CursorLine ctermbg=none cterm=underline
 
-"set clipboard=unnamed
-set clipboard=unnamedplus "in antergos
+set clipboard=unnamedplus
+"set clipboard=unnamedplus "in antergos
 
 filetype indent on "for php.vim & html.vim in .vimrc/indent
 
@@ -256,3 +258,5 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
+set ignorecase
+set infercase

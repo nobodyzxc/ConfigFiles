@@ -152,8 +152,13 @@ bindkey '^ ' autosuggest-accept
 ## <<< conda initialize <<<
 
 alias cof='google-chrome-stable'
+source ~/.alias.sh
 
 PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
 
-source ~/.alias.sh
+export SPARK_HOME=/usr/lib/python3.7/site-packages/pyspark
+export PATH=$SPARK_HOME/bin:$PATH
+export PYSPARK_PYTHON=python3
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+export LD_LIBRARY_PATH=/usr/local/lib

@@ -4,6 +4,7 @@ share="${cherry}:$sf"
 alias g='chromium>/dev/null 2>&1 &'
 
 alias share='__(){ if [ $# -gt 1 ];then scp $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
+alias fetch='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
@@ -25,9 +26,10 @@ alias ll='ls -1v -la'
 alias la='ls -a'
 alias tm='tmux'
 alias python='python3.6'
+alias pip='pip3.6'
 alias py='python'
 alias py2='python2'
-alias cof='__(){ for f in $*; do chromium "$f" 2>/dev/null ; done };__'
+alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 alias wifi-list='nmcli dev wifi'
@@ -46,6 +48,7 @@ alias bc='bc -l'
 alias findext='__(){ find . -regex ".*\.\($1\)"; };__'
 alias vz='vim ~/.zshrc'
 alias b='feh --randomize --bg-center $HOME/Pictures/WallPapers/*/*.jpg'
+alias bg='__(){feh --randomize --bg-center $HOME/Pictures/WallPapers/$1/*.jpg;};__'
 alias respace='for f in *\ *; do mv "$f" "${f// /_}"; done'
 alias def='sdcv'
 alias volup='pactl set-sink-volume 0 +5%'
@@ -97,6 +100,7 @@ alias dorar='rar a' # ext dir
 alias unrar='rar x'
 alias dolha='lha -a' # ext file
 alias unlha='lha -e'
+alias vpn='sudo openfortivpn 140.113.235.174:443 -u zxchen'
 
 swpclean() {
     if [ -f .*.swp ];then
@@ -118,3 +122,14 @@ v2() {
   done
   curl "v2en.co/$str"
 }
+if test "$HOST" = "plas" ;then
+alias lock='~/.i3/i3lock-multimonitor/lock'
+#alias mv='rsync --info=progress2'
+#alias cp="rsync -avz"
+fi
+alias sshserver='autossh -M 20000 -i ~/.ssh/id_rsa -NfR 2222:localhost:22 lab'
+alias tosticker='__(){convert $1 -resize 512x512 512_${1%.*}.png;};__'
+alias nsd='ssh -i "nobodyzxc.pem" ubuntu@ec2-3-85-119-217.compute-1.amazonaws.com'
+alias pf='perf record --call-graph dwarf'
+alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
+alias irssi='TERM=tmux&&irssi'
