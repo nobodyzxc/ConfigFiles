@@ -26,6 +26,7 @@
     filetree_direction = "left"
     filemanager = "nerdtree"
     autocomplete_method = "coc"
+    complete_method = "coc"
 
 # Enable autocomplete layer
 [[layers]]
@@ -40,7 +41,6 @@ default_height = 30
 
 [[layers]]
 name = "lang#c"
-
 
 [[layers]]
 name = "lsp"
@@ -64,5 +64,5 @@ name = "format"
 
 [[layers]]
   name = "core#statusline"
-  enable = false
+  enable = true
 

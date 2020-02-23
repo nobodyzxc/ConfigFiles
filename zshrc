@@ -9,7 +9,8 @@ export ZSH=/usr/share/oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="lambda"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -58,7 +59,7 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 #
-ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
+#ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -162,3 +163,5 @@ export PATH=$SPARK_HOME/bin:$PATH
 export PYSPARK_PYTHON=python3
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export LD_LIBRARY_PATH=/usr/local/lib
+source ~/.alias.sh
+#xset r rate 250 45

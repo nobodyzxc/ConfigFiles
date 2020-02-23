@@ -42,7 +42,7 @@ set background=dark
 
 autocmd FileType make setlocal noexpandtab
 
-setlocal omnifunc=syntaxcomplete#Complete
+"setlocal omnifunc=syntaxcomplete#Complete
 set cot+=menuone
 
 
@@ -125,7 +125,8 @@ function! TogIntv()
             if b:ext == "ss"
                 "VimShellInteractive plt-r5rs.exe
                 "VimShellInteractive racket3m.exe
-                VimShellInteractive racket.exe -i
+                "VimShellInteractive racket.exe -i
+                VimShellInteractive petite
             elseif b:ext == "scm"
                 VimShellInteractive racket.exe -l r5rs -i
             else

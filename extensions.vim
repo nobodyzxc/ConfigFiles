@@ -29,7 +29,7 @@ let g:tagbar_type_markdown = {
         \ 's:sections',
         \ 'i:images'
     \ ],
-    \ 'sro' : '|',
+    \ 'sro' : '<|||>',
     \ 'kind2scope' : {
         \ 's' : 'section',
     \ },
@@ -61,12 +61,11 @@ set omnifunc=syntaxcomplete#Complete
 
 Bundle 'ervandew/supertab'
 "set complete=.,w,b,u,t,i,w,
-"let g:SuperTabDefaultCompletionType = 'context'
-"autocmd FileType *
-"  \ if &omnifunc != '' |
-"  \   call SuperTabChain(&omnifunc, "<c-p>") |
-"  \ endif
-
+let g:SuperTabDefaultCompletionType = 'context'
+autocmd FileType *
+  \ if &omnifunc != '' |
+  \   call SuperTabChain(&omnifunc, "<c-p>") |
+  \ endif
 
 ""smart mapping for tab completion
 "function InsertTabWrapper()
@@ -92,7 +91,7 @@ Bundle 'ervandew/supertab'
 
 Bundle 'artur-shaik/vim-javacomplete2'
 autocmd FileType java setlocal omnifunc=javacomplete#Complete
-autocmd FileType java let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
+let g:SuperTabDefaultCompletionType = '<C-x><C-o>'
 
 Bundle 'asins/vim-dict'
 "autocmd FileType java let g:SuperTabDefaultCompletionType = "<c-x><c-k>"
