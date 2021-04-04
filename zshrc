@@ -9,8 +9,8 @@ export ZSH=/usr/share/oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
-ZSH_THEME="lambda"
+ZSH_THEME="agnoster"
+#ZSH_THEME="lambda"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -66,8 +66,9 @@ ZSH_THEME="lambda"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(git)
-plugins=(git zsh-autosuggestions)
+plugins=(git)
+#plugins=(git zsh-autosuggestions)
+#bindkey '^ ' autosuggest-accept
 
 # git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 
@@ -110,18 +111,23 @@ export LC_ALL=
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-set | /usr/bin/grep "RUN_TMUX" > /dev/null
-if [ $? = 1 ];then
-    export RUN_TMUX=1
-    touch /tmp/totalExit
-    tmux -u
-    if [ -f /tmp/totalExit ];then
-        rm -f /tmp/totalExit
-        exit
-    fi
-    RUN_TMUX=0
-    clear
+if [ -z "$DISPLAY" -a $XDG_VTNR -eq 1 ]; then
+  #startx
+  #text mode console
+  :
+else
+  set | /usr/bin/grep "RUN_TMUX" > /dev/null
+  if [ $? = 1 ];then
+      export RUN_TMUX=1
+      touch /tmp/totalExit
+      tmux -u
+      if [ -f /tmp/totalExit ];then
+          rm -f /tmp/totalExit
+          exit
+      fi
+      RUN_TMUX=0
+      clear
+  fi
 fi
 
 PATH=$PATH:/home/zxc/.local/bin
@@ -132,7 +138,6 @@ export PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/pkgconfig
 PATH=$PATH:~/bin:~/.yarn/bin
 export CFLAGS=-fPIC
 export CXXFLAGS=-fPIC
-bindkey '^ ' autosuggest-accept
 
 ### added by Anaconda3 installer
 ## export PATH="/usr/local/anaconda/bin:$PATH"  # commented out by conda initialize
@@ -151,8 +156,6 @@ bindkey '^ ' autosuggest-accept
 #fi
 #unset __conda_setup
 ## <<< conda initialize <<<
-
-alias cof='google-chrome-stable'
 
 PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
