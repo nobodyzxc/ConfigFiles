@@ -20,8 +20,8 @@ if 1
     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
 endif
 " vim:set et sw=2
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set autoindent
@@ -29,7 +29,7 @@ let mapleader = "\<Space>"
 nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprev<CR>
 nnoremap <C-t>   :tabnew<CR>
-nmap <C-w>   :bd<CR>
+nmap <C-q>   :bd<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 nnoremap <C-j> <C-W>j
@@ -60,3 +60,12 @@ set hlsearch
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 set wrap
+
+highlight RedundantSpaces ctermbg=red guibg=red
+
+" show ShowTrailingWhitespace
+match RedundantSpaces /\s\+$/
+nnoremap <Leader>\ ma:%s/\s\+$//<cr>:let @/=''<CR>`a
+nnoremap cp "_ciw<c-R>"<ESC>
+unmap q
+unmap <c-x>
