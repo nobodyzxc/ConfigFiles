@@ -23,10 +23,11 @@
     buffer_index_type = 4
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
+    autocomplete_method = "coc"
     complete_method = "coc"
     filetree_direction = "left"
     filemanager = "nerdtree"
-    auto_disable_touchpad = false
+    project_rooter_automatically = 0
 
 # Enable autocomplete layer
 [[layers]]
@@ -43,25 +44,47 @@ default_height = 30
 name = "lang#c"
 
 [[layers]]
+enable = false
+name = "lang#python"
+
+[[layers]]
+name = "lang#html"
+
+[[layers]]
+name = "lang#purescript"
+
+[[layers]]
+name = "lang#ruby"
+
+[[layers]]
 name = "lsp"
+enable = true
 filetypes = [
     "c",
-    "cpp"
+    "cpp",
+#"python"
 ]
 
 [layers.override_cmd]
-    c = ["clangd"]
+#  c = ["clangd"]
+#c = ["ccls"]
+#cpp = ["ccls"]
 
 [[layers]]
-name = "checkers"
+  name = "checkers"
+  enable = false
 
 [[layers]]
-name = "format"
+  name = "format"
 
 [[layers]]
   name = "core#statusline"
-  enable = true
+  enable_sidebar = true
 
 [[layers]]
-name = "ui"
-enable_sidebar = true
+  name = "ui"
+  enable = true
+
+[[custom_plugins]]
+name = 'mbbill/fencview'
+merged = 0
