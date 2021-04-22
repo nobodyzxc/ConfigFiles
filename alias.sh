@@ -129,8 +129,8 @@ v2() {
 #git filter-branch --force --index-filter \
 #  "git rm --cached --ignore-unmatch hw2/nobodyzxc/Q1/O_/" \
 #  --prune-empty --tag-name-filter cat -- --all
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
+export GDK_SCALE=2
+export GDK_DPI_SCALE=0.5
+export XCURSOR_SIZE=42
+export QT_AUTO_SCREEN_SCALE_FACTOR=2 # 0
 export QT_SCREEN_SCALE_FACTORS=2
-#export GDK_SCALE=2
-#export GDK_DPI_SCALE=0.5
-export GDK_DPI_SCALE=1
