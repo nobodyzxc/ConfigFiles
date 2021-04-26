@@ -33,6 +33,7 @@ alias py='python'
 alias py2='python2'
 alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
+alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 alias wifi-list='nmcli dev wifi'
 alias wifi-connect='__() { if [ $# -gt 1 ];then nmcli dev wifi connect $1 password $2;else nmcli dev wifi connect $1;fi }; __'
@@ -45,6 +46,7 @@ alias g++='g++ -Wall'
 alias gcc='gcc -Wall'
 alias sss='__(){ hexo clean && hexo g && hexo s -p 8080; };__'
 alias ddd='__(){ hexo clean && hexo g && hexo d && echo -e "a\n*\nq\n"| git add -i && git add -u && git commit -m "backup" && git pm; };__'
+alias cgd='__(){ hexo clean && hexo g && hexo d };__'
 alias ssd='hexo s --draft -p 8080'
 alias bc='bc -l'
 alias findext='__(){ find . -regex ".*\.\($1\)"; };__'
@@ -126,3 +128,15 @@ v2() {
 #git filter-branch --force --index-filter \
 #  "git rm --cached --ignore-unmatch hw2/nobodyzxc/Q1/O_/" \
 #  --prune-empty --tag-name-filter cat -- --all
+
+alias tosticker='__(){convert $1 -resize 512x512 512_${1%.*}.png;};__'
+alias pxy='ssh -i ~/.ssh/id_rsa -NfD 9999 zxc@140.113.210.48 -p 1024'
+alias pvim='vim -u NONE'
+alias flv2mp3='__(){ffmpeg -i $1 -q:a 5 $2;};__'
+#source /etc/profile.d/nix{,-daemon}.sh
+alias ac='arduino-cli compile -b arduino:avr:uno'
+alias au='arduino --upload *.ino --port /dev/ttyUSB*'
+alias am='minicom -b 9600 -D /dev/ttyUSB*'
+alias amm='minicom -b 38400 -D /dev/ttyUSB*'
+alias tl='telnet 127.0.0.1'
+#TERM='xterm'

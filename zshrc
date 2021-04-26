@@ -129,7 +129,7 @@ PATH=$PATH:/home/zxc/.local/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
 export PKG_CONFIG=/usr/bin/pkg-config
 export PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/pkgconfig
-PATH=$PATH:~/bin:~/.yarn/bin
+PATH=~/bin:~/.yarn/bin:$PATH
 export CFLAGS=-fPIC
 export CXXFLAGS=-fPIC
 bindkey '^ ' autosuggest-accept

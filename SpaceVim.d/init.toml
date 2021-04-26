@@ -24,9 +24,11 @@
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
     complete_method = "coc"
+    autocomplete_method = "coc"
     filetree_direction = "left"
     filemanager = "nerdtree"
     auto_disable_touchpad = false
+    project_rooter_automatically = 0
 
 # Enable autocomplete layer
 [[layers]]
@@ -44,15 +46,20 @@ name = "lang#c"
 
 [[layers]]
 name = "lsp"
+enable = true
 filetypes = [
     "c",
     "cpp"
 ]
 
 [layers.override_cmd]
-    c = ["clangd"]
+enable = false
+#    c = ["ccls"]
+#    cpp = ["ccls"]
+#c = ["clangd"]
 
 [[layers]]
+enable = false
 name = "checkers"
 
 [[layers]]
@@ -65,3 +72,7 @@ name = "format"
 [[layers]]
 name = "ui"
 enable_sidebar = true
+
+[[custom_plugins]]
+name = 'mbbill/fencview'
+merged = 0

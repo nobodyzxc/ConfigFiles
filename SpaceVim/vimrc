@@ -20,8 +20,8 @@ if 1
     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
 endif
 " vim:set et sw=2
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 set autoindent
@@ -29,13 +29,14 @@ let mapleader = "\<Space>"
 nnoremap <Tab> :tabnext<CR>
 nnoremap <S-Tab> :tabprev<CR>
 nnoremap <C-t>   :tabnew<CR>
-nmap <C-w>   :bd<CR>
+nmap <C-q>   :bd<CR>
 inoremap <C-t>     <Esc>:tabnew<CR>
 
 nnoremap <C-j> <C-W>j
 nnoremap <C-k> <C-W>k
 nnoremap <C-h> <C-W>h
 nnoremap <C-l> <C-W>l
+
 nnoremap <Leader>k  <C-W><C-W>
 nmap <Leader>w :w<CR>
 nmap <Leader>q :q<CR>
@@ -50,11 +51,34 @@ nmap <Leader>; :
 nmap <Leader>= mcHmhLmlgg=G`h`l`c
 nmap <Leader>t :!echo --- <C-R><C-w> ---\\n ;sdcv -c <C-R><C-W><CR>
 nmap <Leader>g :silent !browser <C-R><C-A> 1>/dev/null 2>/dev/null&<CR>:redraw!<CR>
+
 noremap H ^
 noremap L $
 xnoremap v <ESC>
 set clipboard=unnamedplus
 set hlsearch
+
 autocmd BufRead,BufNewFile *.md setlocal spell
 set wrap
 set mouse=
+
+autocmd Filetype * if &ft!="scheme"|set tabstop=4 shiftwidth=4|endif
+autocmd Filetype * if &ft=="markdown"|set tabstop=3 shiftwidth=3|endif
+autocmd Filetype * if &ft=="html"|set tabstop=2 shiftwidth=2|endif
+autocmd FileType scheme set tabstop=2 shiftwidth=2
+autocmd FileType haskell set tabstop=2 shiftwidth=2
+autocmd FileType javascript set tabstop=2 shiftwidth=2
+autocmd FileType solidity set tabstop=2 shiftwidth=2
+autocmd FileType cpp set tabstop=2 shiftwidth=2
+autocmd FileType c set tabstop=2 shiftwidth=2
+autocmd FileType tex set tabstop=2 shiftwidth=2
+autocmd FileType arduino set tabstop=2 shiftwidth=2
+
+highlight RedundantSpaces ctermbg=red guibg=red
+
+" show ShowTrailingWhitespace
+match RedundantSpaces /\s\+$/
+nnoremap <Leader>\ ma:%s/\s\+$//<cr>:let @/=''<CR>`a
+nnoremap cp "_ciw<c-R>"<ESC>
+unmap q
+unmap <c-x>
