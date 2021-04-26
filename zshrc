@@ -58,7 +58,7 @@ ZSH_THEME="agnoster"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 #
-ZSH_CUSTOM=/usr/share/zsh/plugins/zsh-autosuggestions/
+ZSH_CUSTOM=/usr/share/zsh #/plugins/zsh-autosuggestions/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -128,7 +128,7 @@ PATH=$PATH:/home/zxc/.local/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib
 export PKG_CONFIG=/usr/bin/pkg-config
 export PKG_CONFIG_PATH=/usr/share/pkgconfig:/usr/lib/pkgconfig
-PATH=$PATH:~/bin:~/.yarn/bin
+PATH=$PATH:~/bin:~/.yarn/bin:~/.cargo/bin
 export CFLAGS=-fPIC
 export CXXFLAGS=-fPIC
 bindkey '^ ' autosuggest-accept
@@ -154,13 +154,12 @@ bindkey '^ ' autosuggest-accept
 alias cof='google-chrome-stable'
 source ~/.alias.sh
 
-PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
-
-export SPARK_HOME=/usr/lib/python3.7/site-packages/pyspark
-export PATH=$SPARK_HOME/bin:$PATH
-export PYSPARK_PYTHON=python3
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+#PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
+#LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
+#export SPARK_HOME=/usr/lib/python3.7/site-packages/pyspark
+#export PATH=$SPARK_HOME/bin:$PATH
+#export PYSPARK_PYTHON=python3
+#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 export LD_LIBRARY_PATH=/usr/local/lib
 source ~/.alias.sh
 #xset r rate 250 45

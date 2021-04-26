@@ -2,7 +2,7 @@ SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 ln -sf "$SCRIPTPATH/alias.sh"           ~/.alias.sh
 ln -sf "$SCRIPTPATH/antergos.bashrc.sh" ~/.bashrc
 ln -sf "$SCRIPTPATH/inputrc"            ~/.inputrc
-ln -sf "$SCRIPTPATH/tmux.conf"          ~/.tmux.conf
+ln -sf "$SCRIPTPATH/tmuxs/kab.conf"     ~/.tmux.conf
 ln -sf "$SCRIPTPATH/zshrc"              ~/.zshrc
 ln -sf "$SCRIPTPATH/screenrc"           ~/.screenrc
 ln -sf "$SCRIPTPATH/ghci"               ~/.ghci

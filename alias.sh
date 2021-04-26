@@ -27,10 +27,10 @@ alias l='clear'
 alias ll='ls -1v -la'
 alias la='ls -a'
 alias tm='tmux'
-alias python='python3.6'
-alias pip='pip3.6'
-alias py='python'
-alias py2='python2'
+#alias python='python3.6'
+#alias pip='pip3.6'
+#alias py='python'
+#alias py2='python2'
 alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
@@ -131,8 +131,55 @@ alias lock='~/.i3/i3lock-multimonitor/lock'
 #alias cp="rsync -avz"
 fi
 alias sshserver='autossh -M 20000 -i ~/.ssh/id_rsa -NfR 2222:localhost:22 lab'
-alias tosticker='__(){convert $1 -resize 512x512 512_${1%.*}.png;};__'
+alias tosticker='__(){for fn in $*; do convert $fn -quality 90% -resize 512x512 512_${fn%.*}.png;done};__'
 alias nsd='ssh -i "nobodyzxc.pem" ubuntu@ec2-3-85-119-217.compute-1.amazonaws.com'
 alias pf='perf record --call-graph dwarf'
 alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
 alias irssi='TERM=tmux&&irssi'
+alias filedx='find . -type f -exec chmod a-x {} \;'
+
+
+alias ana='source /opt/anaconda/bin/activate'
+alias nan='conda deactivate'
+alias lspg='cmake -H. -BDebug -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES;ln -s Debug/compile_commands.json .'
+
+#conda create --name python36 python=3.6
+#conda info -e
+#source activate python36
+#conda create --name new_env_name --clone org_env_name
+#conda remove --name python36 --all
+#conda install scipy
+#conda list
+#conda list -n python36
+#conda install -n python36 numpy
+#conda search numpy
+#conda update -n python36 numpy
+#conda remove -n python36 numpy
+#conda update conda
+#conda update anaconda
+#conda update python
+export TERMINFO=/usr/share/terminfo
+alias playback='pactl load-module module-loopback latency_msec=10'
+alias unplayback='pactl unload-module module-loopback'
+alias streaming='ffmpeg-screen-recorder -a -o rtmp://x.rtmp.youtube.com/live2/b2kh-mwqm-j6ay-1a9e'
+alias run='qemu-system-aarch64 -serial null -serial stdio -M raspi3 -kernel kernel8.img -display none'
+#alias poweroff='sudo poweroff -f'
+#alias reboot='sudo reboot -f'
+alias mlab='sshfs lab:/home/zxc /home/zxc/lab'
+alias octave='octave --persist'
+#alias python='python3.6'
+alias v2v='__(){ ffmpeg -i $1 -vf "fps=4,scale=1024:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2; } ; __'
+PATH=$PATH:~/.dotnet/tools
+
+export LD_LIBRARY_PATH="$HOME/rabbit/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/rabbit/bin:$PATH"
+alias https='python -m http.server'
+alias tl='telnet 127.0.0.1'
+alias jasmin='java -jar ~/bin/jasmin.jar'
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$ANDROID_HOME/emulator:$PATH
+export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/tools/bin:$PATH
+export PATH=$ANDROID_HOME/platform-tools:$PATH
+alias recmic='arecord -vv -fdat'

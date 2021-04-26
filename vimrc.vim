@@ -100,8 +100,9 @@ nmap <F7> vdiv<ESC>
 noremap u :call MyRe()<CR>
 map <leader>zz :call ToggleFold()<cr>
 
-autocmd BufRead *.py nmap <leader>c :w<Esc>G:r!python3.6 %<CR>`.
-autocmd BufRead *.hs nmap <leader>c :w!<Esc>:!ghci %<CR>
+autocmd * nmap <leader>c :w<Esc>G:r!python3.6 %<CR>`.
+"autocmd Filetype *.py nmap <leader>c :w<Esc>G:r!python3.6 %<CR>`.
+"autocmd BufRead *.hs nmap <leader>c :w!<Esc>:!ghci %<CR>
 
 command! JsonBeautifier :%!python -m json.tool
 
