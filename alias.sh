@@ -103,6 +103,7 @@ alias dolha='lha -a' # ext file
 alias unlha='lha -e'
 alias i3-msg='i3-msg -s `i3 --get-socketpath`'
 alias i3exit='i3-msg exit'
+alias awexit='awesome-client "awesome.quit()"'
 alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
 
 swpclean() {
