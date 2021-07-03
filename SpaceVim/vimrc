@@ -63,3 +63,13 @@ set hlsearch
 autocmd BufRead,BufNewFile *.md setlocal spell
 set wrap
 set mouse=
+
+highlight RedundantSpaces ctermbg=red guibg=red
+
+" show ShowTrailingWhitespace
+match RedundantSpaces /\s\+$/
+nnoremap <Leader>\ ma:%s/\s\+$//<cr>:let @/=''<CR>`a
+nnoremap cp "_ciw<c-R>"<ESC>
+unmap q
+
+autocmd FileType python setlocal shiftwidth=2 softtabstop=2 expandtab

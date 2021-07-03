@@ -49,6 +49,7 @@ name = "lang#python"
 
 [[layers]]
 name = "lang#html"
+enable = true
 
 [[layers]]
 name = "lang#purescript"

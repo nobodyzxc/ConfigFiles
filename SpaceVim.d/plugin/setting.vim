@@ -41,3 +41,4 @@ let g:lsp_log_file = expand('~/vim-lsp.log')
 let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 
 let g:coc_node_path = '/usr/bin/node'
+
