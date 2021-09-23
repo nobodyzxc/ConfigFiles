@@ -6,9 +6,12 @@
     pm = push -u origin master
     st = status
     relast = git commit --amend
-    kill = "!f() { git filter-branch --force --index-filter \"git rm --cached --ignore-unmatch $1\" --prune-empty --tag-name-filter cat -- --all; }; f"
-    cm = checkout master
+    kill = "!f() { git filter-branch --force --index-filter \"git rm -rf --cached --ignore-unmatch $*\" --prune-empty --tag-name-filter cat -- --all; }; f"
+    cm = checkout maste/
+    large = "!f() { git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | sed -n 's/^blob //p' | sort --numeric-sort --key=2 | cut -c 1-12,41- | $(command -v gnumfmt || echo numfmt) --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest; }; f"
 
 #git filter-branch --force --index-filter \
 #  "git rm --cached --ignore-unmatch [file]" \
 #  --prune-empty --tag-name-filter cat -- --all
+[pull]
+	rebase = false

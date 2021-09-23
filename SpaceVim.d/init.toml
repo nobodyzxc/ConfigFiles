@@ -28,6 +28,10 @@
     filetree_direction = "left"
     filemanager = "nerdtree"
     project_rooter_automatically = 0
+    # options for layers checkers
+    enable_neomake = false
+    enable_ale = false
+    lint_on_the_fly = false
 
 # Enable autocomplete layer
 [[layers]]
@@ -58,22 +62,23 @@ name = "lang#purescript"
 name = "lang#ruby"
 
 [[layers]]
-name = "lsp"
-enable = true
-filetypes = [
-    "c",
-    "cpp",
-#"python"
-]
+  name = "lsp"
+  enable = true
+  filetypes = [
+      "c",
+      "cpp",
+      #"python"
+  ]
 
-[layers.override_cmd]
-#  c = ["clangd"]
-#c = ["ccls"]
-#cpp = ["ccls"]
+  [layers.override_cmd]
+    c = ["clangd"]
+    #c = ["ccls"]
+    #cpp = ["ccls"]
 
 [[layers]]
   name = "checkers"
   enable = false
+  #show_cursor_error = true
 
 [[layers]]
   name = "format"

@@ -105,10 +105,13 @@ alias i3-msg='i3-msg -s `i3 --get-socketpath`'
 alias i3exit='i3-msg exit'
 alias awexit='awesome-client "awesome.quit()"'
 alias zhtg='sudo sed -i -e "s/Exec=telegram-desktop -- %u/Exec=env QT_IM_MODULE=IBus telegram-desktop -- %u/g" /usr/share/applications/telegramdesktop.desktop'
+alias tlauncher='java -jar ~/bin/TLauncher-2.8.jar'
 
 alias mp4togif='__(){ ffmpeg -i $1 -vf "fps=10,scale=960:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 $2; };__'
 
 alias addkey='gpg --keyserver keyserver.ubuntu.com --search-keys'
+
+alias recmic='arecord -vv -fdat'
 
 swpclean() {
     if [ -f .*.swp ];then
@@ -139,3 +142,9 @@ export GDK_DPI_SCALE=0.5
 export XCURSOR_SIZE=42
 export QT_AUTO_SCREEN_SCALE_FACTOR=2 # 0
 export QT_SCREEN_SCALE_FACTORS=2
+
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:~/GitHub/flutter/bin
+export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable

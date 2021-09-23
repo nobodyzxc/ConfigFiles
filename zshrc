@@ -159,6 +159,8 @@ export CXXFLAGS=-fPIC
 
 PYTHONPATH=$PYTHONPATH:/home/zxc/GitHub/z3-z3-4.5.0/build/python
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/GitHub/z3-z3-4.5.0/build
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/plas/looptactics/external/install-isl/lib
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/zxc/plas/looptactics/external/install-pet/lib
 
 source ~/.alias.sh
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
