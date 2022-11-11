@@ -14,4 +14,10 @@
 #  "git rm --cached --ignore-unmatch [file]" \
 #  --prune-empty --tag-name-filter cat -- --all
 [pull]
-	rebase = false
+    rebase = false
+[core]
+	editor = vim
+[http]
+	cookiefile = /home/zxc/.gitcookies
+[init]
+	defaultBranch = main

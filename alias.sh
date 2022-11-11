@@ -4,9 +4,6 @@ share="${cherry}:$sf"
 alias report='xradnr --output eDPI --mode 1366x768'
 alias ws='wc -m'
 alias g='chromium>/dev/null 2>&1 &'
-
-alias share='__(){ if [ $# -gt 1 ];then scp -r $1 ${share}/$2; ssh $cherry chmod 644 ${sf}/$2;else scp -r $1 ${share}; ssh $cherry chmod 644 ${sf}/$1;fi; } ; __'
-alias fetch='__(){ for fn in $*;do scp ${share}/$fn .;done; } ; __'
 alias ls='/bin/ls -NF --color=auto'
 alias sl='ls'
 alias vim='env TERM=xterm-color vim'
@@ -28,10 +25,12 @@ alias l='clear'
 alias ll='ls -1v -la'
 alias la='ls -a'
 alias tm='tmux'
-alias python='python3.6'
-alias py='python'
-alias py2='python2'
+#alias python='python3.6'
+#alias py='python'
+#alias pip='pip3.6'
+#alias py2='python2'
 alias cof='__(){ for f in $*; do browser "$f" 2>/dev/null ; done };__'
+alias cif='__(){ for f in $*; do browser --incognito "$f" 2>/dev/null ; done };__'
 alias dbug='__(){ chrome https://www.udebug.com/UVa/$2; };__'
 alias qsub='chrome https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=25'
 alias wifi-list='nmcli dev wifi'
@@ -112,6 +111,26 @@ alias mp4togif='__(){ ffmpeg -i $1 -vf "fps=10,scale=960:-1:flags=lanczos,split[
 alias addkey='gpg --keyserver keyserver.ubuntu.com --search-keys'
 
 alias recmic='arecord -vv -fdat'
+alias tosticker='__(){for fn in $*; do convert $fn -quality 90% -resize 512x512 512_${fn%.*}.png;done};__'
+alias tomp3='__(){ffmpeg -i $1 -vn -ar 44100 -ac 2 -b:a 192k $2;};__'
+
+#alias compress_video='__(){ffmpeg -i $1 -vcodec libx265 -crf 28 comp_$1;};__'
+alias video720p='__(){ffmpeg -i $1 -vf scale=-1:720 -preset slow -crf 18 comp_$1;};__'
+alias video480p='__(){ffmpeg -i $1 -vf scale=-1:480 -preset slow -crf 18 comp_$1;};__'
+
+alias pf='perf record --call-graph dwarf'
+alias bthoff='bluetoothctl power off'
+alias cat='bat'
+alias rm='rip'
+alias cp='xcp'
+alias du='dust'
+# alias grep='rg' #ripgrep
+alias find='fd'
+alias ps='procs'
+alias top='bottom'
+alias tree='broot'
+# tokei
+# ranger
 
 swpclean() {
     if [ -f .*.swp ];then
@@ -134,6 +153,14 @@ v2() {
   curl "v2en.co/$str"
 }
 
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
+
 #git filter-branch --force --index-filter \
 #  "git rm --cached --ignore-unmatch hw2/nobodyzxc/Q1/O_/" \
 #  --prune-empty --tag-name-filter cat -- --all
@@ -147,4 +174,20 @@ export ANDROID_HOME=/opt/android-sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:~/GitHub/flutter/bin
+export FLYCTL_INSTALL="/home/zxc/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+export PATH="/usr/bin:$PATH"
 export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+#source /usr/share/nvm/init-nvm.sh
+#export LD_PRELOAD=/opt/intel/mkl/lib/intel64/libmkl_rt.so
+source ~/.token.sh
+export LIBVA_DRIVER_NAME="iHD"
+
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
+if [ "$CONDA_DEFAULT_ENV" != "" ];then
+  conda activate $CONDA_DEFAULT_ENV
+fi
+
+#export TERM=xterm
+export TERMINFO=/usr/share/terminfo

@@ -48,11 +48,11 @@ unmap q
 
 autocmd BufRead,BufNewFile *.md setlocal spell
 " plugin setting below
-map <F3> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
 let NERDTreeQuitOnOpen=0
 
-map <F2> :TagbarToggle<CR>
+map <F3> :TagbarToggle<CR>
 if &diff
     "nothing
 else
@@ -77,9 +77,9 @@ nn <silent> <Leader>lr :call SpaceVim#lsp#references()<cr>
 nn <silent> <Leader>ln :call SpaceVim#lsp#rename()<cr>
 nn <silent> <Leader>lc :call SpaceVim#lsp#show_doc()<cr>
 nn <silent> <Leader>lt :call SpaceVim#lsp#go_to_typedef()<cr>
-nn <silent> <Leader>lR :call SpaceVim#lsp#refactor<cr>
+nn <silent> <Leader>lR :call SpaceVim#lsp#refactor()<cr>
 nn <silent> <Leader>ll :call SpaceVim#lsp#
-
+" :FencAutoDetect " decoding autodetect utf8
 
 let g:lsp_diagnostics_echo_cursor = 1
 
@@ -93,6 +93,54 @@ let g:asyncomplete_log_file = expand('~/asyncomplete.log')
 let g:coc_node_path = '/usr/bin/node'
 
 autocmd FileType python,javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2 expandtab smartindent
+
+let g:detectindent_preferred_tabsize = 2
 let g:detectindent_preferred_indent = 2
 let g:detectindent_preferred_expandtab = 2
+let g:detectindent_preferred_indent = 2
 autocmd BufReadPost * :DetectIndent
+"dont let DetectIndent guess tabstop
+"autocmd BufReadPost * setlocal tabstop=2
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\.git$\|SDK_BUILD_TEST$|prebuilts$|examples$|external$|cmake$|\.cache$',
+  \ 'file': '\.idx$'
+\ }
+
+if exists("g:ctrlp_user_command")
+    unlet g:ctrlp_user_command
+endif
+"set wildignore+=.*,*/SDK_BUILD_TEST/*,*/prebuilts/*,*/examples/*,*/external/[a-k]*,*/external/[m-z]*
+set wildignore+=.*,*/SDK_BUILD_TEST/*,*/prebuilts/*,*/examples/*,*/external/*,*/cmake/*
+
+let g:fzf_layout = { 'down': '40%' }
+
+function! GitFZF()
+  let path = trim(system('cd '.shellescape(expand('%:p:h')).' && git rev-parse --show-toplevel'))
+  if !isdirectory(path)
+    let path = expand('%:p:h')
+    endif
+  "exe 'FZF ' . path
+  exe 'FZF ' . path
+endfunction
+
+command! GitFZF call GitFZF()
+nnoremap <C-p> :GitFZF<CR>
+
+tnoremap <expr> <Esc> (&filetype == "fzf") ? "<Esc>" : "<c-\><c-n>"
+
+unmap <C-x>
+nnoremap <C-i> <C-i>
+
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+" Insert <tab> when previous text is space, refresh completion if not.
+"
+ inoremap <silent><expr> <TAB>
+ \ coc#pum#visible() ? coc#pum#next(1):
+ \ CheckBackspace() ? "\<Tab>" :
+ \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"

@@ -56,6 +56,7 @@ name = "lang#html"
 enable = true
 
 [[layers]]
+enable = true
 name = "lang#purescript"
 
 [[layers]]
@@ -67,11 +68,17 @@ name = "lang#ruby"
   filetypes = [
       "c",
       "cpp",
-      #"python"
+      "python",
+#"javascript",
+#"purescript"
   ]
 
-  [layers.override_cmd]
-    c = ["clangd"]
+[layers.override_cmd]
+  python = ["pyls"]
+  c = ["clangd"]
+  cpp = ["clangd"]
+#purescript = ['purescript-language-server', '--stdio']
+#javascript = ["javascript-typescript-langserver", "--stdio"]
     #c = ["ccls"]
     #cpp = ["ccls"]
 
@@ -86,6 +93,9 @@ name = "lang#ruby"
 [[layers]]
   name = "core#statusline"
   enable_sidebar = true
+
+[[layers]]
+  name = "fzf"
 
 [[layers]]
   name = "ui"
